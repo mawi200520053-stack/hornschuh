@@ -3,6 +3,7 @@ import Image from "next/image";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
 import KarriereStellenListe from "@/components/KarriereStellenListe";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import InitiativForm from "@/components/InitiativForm";
 import type { Stelle } from "@/components/JobModal";
 import { client } from "@/sanity/lib/client";
@@ -32,6 +33,7 @@ export default async function KarrierePage() {
 
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[{ name: "Karriere", href: "/karriere" }]} />
       {/* HERO */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <Image

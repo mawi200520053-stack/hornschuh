@@ -7,6 +7,7 @@ import { PROJEKTE_IDS_QUERY, PROJEKT_BY_ID_QUERY } from "@/sanity/lib/queries";
 import type { ProjektDetail } from "@/lib/referenzen";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import AnimatedSection from "@/components/AnimatedSection";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const dynamicParams = true;
 export const revalidate = 3600;
@@ -50,6 +51,10 @@ export default async function ReferenzDetailPage({
 
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[
+        { name: "Referenzen", href: "/referenzen" },
+        { name: projekt.titel, href: `/referenzen/${id}` },
+      ]} />
       {/* HERO — full-bleed titelBild */}
       <section className="relative" style={{ height: "80vh", minHeight: "520px" }}>
         <Image

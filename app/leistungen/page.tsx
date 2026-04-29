@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Leistungen | Hornschuh Metallbau GmbH",
@@ -80,6 +81,7 @@ const spektrum = [
 export default function LeistungenPage() {
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[{ name: "Leistungen", href: "/leistungen" }]} />
       {/* PAGE HERO */}
       <section
         className="pt-32 pb-20"

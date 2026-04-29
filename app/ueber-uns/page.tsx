@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Über uns | Hornschuh Metallbau GmbH",
@@ -61,6 +62,7 @@ const meilensteine = [
 export default function UeberUnsPage() {
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[{ name: "Über uns", href: "/ueber-uns" }]} />
       {/* PAGE HERO */}
       <section className="pt-32 pb-20" style={{ backgroundColor: "#1a1a1a" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

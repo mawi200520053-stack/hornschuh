@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Kontakt | Hornschuh Metallbau GmbH",
@@ -34,6 +35,7 @@ const standorte = [
 export default function KontaktPage() {
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[{ name: "Kontakt", href: "/kontakt" }]} />
       {/* PAGE HERO */}
       <section className="pt-32 pb-20" style={{ backgroundColor: "#1a1a1a" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

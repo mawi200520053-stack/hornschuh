@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import ReferenzenGrid from "@/components/ReferenzenGrid";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { client } from "@/sanity/lib/client";
 import { PROJEKTE_QUERY } from "@/sanity/lib/queries";
 import type { Projekt } from "@/lib/referenzen";
@@ -20,6 +21,7 @@ export default async function ReferenzenPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd crumbs={[{ name: "Referenzen", href: "/referenzen" }]} />
       {/* PAGE HERO */}
       <section className="pt-32 pb-20" style={{ backgroundColor: "#1a1a1a" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
