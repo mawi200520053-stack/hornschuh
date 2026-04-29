@@ -45,10 +45,10 @@ export const metadata: Metadata = {
       "Seit 1991 Ihr Partner für Stahlbau in Thüringen. Industriehallen, Sonderkonstruktionen, Fassaden, Treppen und Geländer – schlüsselfertig aus einer Hand.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Hornschuh Metallbau GmbH",
+        alt: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
       },
     ],
   },
