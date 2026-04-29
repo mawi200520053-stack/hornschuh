@@ -4,7 +4,11 @@ export const metadata: Metadata = {
   title: "Datenschutzerklärung | Hornschuh Metallbau GmbH",
   description:
     "Informationen zum Datenschutz gemäß DSGVO auf der Website der Hornschuh Metallbau GmbH.",
+  alternates: { canonical: "https://hornschuh.eu/datenschutz" },
 };
+
+const h2 = "text-lg font-bold mb-3";
+const h3 = "text-base font-semibold mt-6 mb-2";
 
 export default function DatenschutzPage() {
   return (
@@ -20,7 +24,7 @@ export default function DatenschutzPage() {
 
           {/* 1 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
               1. Datenschutz auf einen Blick
             </h2>
             <p>
@@ -31,16 +35,17 @@ export default function DatenschutzPage() {
             </p>
             <p className="mt-3">
               Auf dieser Website werden personenbezogene Daten nur erhoben,
-              soweit Sie diese freiwillig über das Kontaktformular mitteilen
-              oder technisch notwendige Daten beim Aufruf der Website automatisch
-              erfasst werden. Es findet kein Tracking, kein Profiling und keine
-              Auswertung zu Werbezwecken statt.
+              soweit Sie diese freiwillig über das Kontaktformular oder die
+              Bewerbungsformulare mitteilen oder technisch notwendige Daten beim
+              Aufruf der Website automatisch erfasst werden. Es findet kein
+              Tracking, kein Profiling und keine Auswertung zu Werbezwecken
+              statt.
             </p>
           </div>
 
           {/* 2 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
               2. Verantwortliche Stelle
             </h2>
             <p>
@@ -64,17 +69,18 @@ export default function DatenschutzPage() {
 
           {/* 3 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
               3. Datenerfassung auf dieser Website
             </h2>
 
-            <h3 className="text-base font-semibold mt-4 mb-2" style={{ color: "#1a1a1a" }}>
-              3.1 Server-Log-Dateien
+            <h3 className={h3} style={{ color: "#1a1a1a" }}>
+              3.1 Hosting (Vercel)
             </h3>
             <p>
-              Beim Aufruf dieser Website erfasst unser Hostinganbieter{" "}
-              <strong>Host Europe GmbH</strong> automatisch Informationen, die
-              Ihr Browser übermittelt. Dies sind:
+              Diese Website wird gehostet von der{" "}
+              <strong>Vercel Inc.</strong>, 440 N Barranca Ave #4133, Covina,
+              CA 91723, USA. Beim Aufruf der Website werden automatisch
+              Server-Log-Dateien erfasst, die Ihr Browser übermittelt:
             </p>
             <ul className="list-disc list-inside mt-2 space-y-1">
               <li>IP-Adresse des anfragenden Geräts</li>
@@ -84,45 +90,92 @@ export default function DatenschutzPage() {
               <li>Referrer-URL (zuvor besuchte Seite)</li>
             </ul>
             <p className="mt-3">
-              Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
-              Interesse an der Sicherheit und dem störungsfreien Betrieb der
-              Website). Die Daten werden in der Regel nach ca. 7 Tagen gelöscht.
+              Interesse an Sicherheit und Betrieb der Website). Die
+              Datenübertragung in die USA erfolgt auf Basis der
+              Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2
+              lit. c DSGVO). Vercel verarbeitet diese Daten als
+              Auftragsverarbeiter gemäß Art. 28 DSGVO. Weitere Informationen:{" "}
+              <a
+                href="https://vercel.com/legal/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#255aa0" }}
+              >
+                vercel.com/legal/privacy-policy
+              </a>
+              .
             </p>
 
-            <h3 className="text-base font-semibold mt-6 mb-2" style={{ color: "#1a1a1a" }}>
+            <h3 className={h3} style={{ color: "#1a1a1a" }}>
               3.2 Kontaktformular
             </h3>
             <p>
               Wenn Sie uns über das Kontaktformular eine Anfrage senden, werden
-              Ihre Angaben (Name, E-Mail-Adresse, Nachricht) zur Bearbeitung der
-              Anfrage und für eventuelle Rückfragen bei uns gespeichert.
+              folgende Daten erhoben: Name, Unternehmen (optional), E-Mail,
+              Telefon (optional), Betreff und Nachricht. Diese Angaben werden
+              ausschließlich zur Bearbeitung Ihrer Anfrage und für etwaige
+              Rückfragen verwendet.
+            </p>
+            <p className="mt-3">
+              Zum Versand der Formulardaten nutzen wir den Dienst{" "}
+              <strong>Resend</strong> (Resend Inc., 2261 Market Street #5039,
+              San Francisco, CA 94114, USA) als technischen E-Mail-Dienstleister.
+              Ihre Daten werden dabei über die Server von Resend an uns
+              übermittelt und anschließend nicht weiter gespeichert. Resend
+              verarbeitet diese Daten als Auftragsverarbeiter gemäß Art. 28 DSGVO.
+              Die Datenübertragung in die USA erfolgt auf Basis der
+              Standardvertragsklauseln der EU-Kommission.
+            </p>
+            <p className="mt-3">
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche
-              Maßnahmen) bzw. lit. f DSGVO (berechtigtes Interesse an der
-              Beantwortung von Kundenanfragen). Ihre Daten werden nicht ohne
-              Ihre Einwilligung an Dritte weitergegeben und nach abschließender
-              Bearbeitung gelöscht.
+              Maßnahmen) bzw. lit. f DSGVO (berechtigtes Interesse). Ihre Daten
+              werden nach abschließender Bearbeitung gelöscht.
+            </p>
+
+            <h3 className={h3} style={{ color: "#1a1a1a" }}>
+              3.3 Bewerbungsformulare (Karriere)
+            </h3>
+            <p>
+              Wenn Sie sich über unsere Karriereseite auf eine Stelle bewerben
+              oder eine Initiativbewerbung einreichen, erheben wir folgende Daten:
+              Vor- und Nachname, Geburtsdatum, Adresse, E-Mail-Adresse, Telefon
+              (optional), Nachricht sowie optional hochgeladene Unterlagen
+              (Lebenslauf, Zeugnisse; PDF, DOC/DOCX oder JPG, max. 5 MB).
+            </p>
+            <p className="mt-3">
+              Die Übermittlung erfolgt ebenfalls über den Dienst{" "}
+              <strong>Resend</strong> (siehe 3.2). Dateianhänge werden direkt
+              als E-Mail-Anhang an uns weitergeleitet und nicht auf
+              Drittservern gespeichert.
+            </p>
+            <p className="mt-3">
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung
+              vorvertraglicher Maßnahmen im Rahmen des Bewerbungsverhältnisses)
+              in Verbindung mit § 26 BDSG. Bewerbungsunterlagen werden bei
+              Ablehnung nach spätestens 6 Monaten gelöscht, sofern keine
+              ausdrückliche Einwilligung zur längeren Speicherung vorliegt.
             </p>
           </div>
 
           {/* 4 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
               4. Cookies
             </h2>
 
-            <h3 className="text-base font-semibold mt-4 mb-2" style={{ color: "#1a1a1a" }}>
+            <h3 className={h3} style={{ color: "#1a1a1a" }}>
               4.1 Technisch notwendige Cookies
             </h3>
             <p>
               Diese Website setzt ausschließlich technisch notwendige Cookies
               ein, die für den ordnungsgemäßen Betrieb der Website erforderlich
-              sind (z. B. Session-Cookies für Formulare). Diese Cookies erfordern
-              gemäß § 25 Abs. 2 TTDSG keine gesonderte Einwilligung. Sie werden
-              nach Ende Ihrer Browser-Sitzung automatisch gelöscht.
+              sind. Diese Cookies erfordern gemäß § 25 Abs. 2 TTDSG keine
+              gesonderte Einwilligung und werden nach Ende Ihrer Browser-Sitzung
+              automatisch gelöscht.
             </p>
 
-            <h3 className="text-base font-semibold mt-6 mb-2" style={{ color: "#1a1a1a" }}>
+            <h3 className={h3} style={{ color: "#1a1a1a" }}>
               4.2 Speicherung der Cookie-Einwilligung
             </h3>
             <p>
@@ -134,15 +187,14 @@ export default function DatenschutzPage() {
               >
                 hornschuh-cookie-consent
               </code>
-              . Diese Speicherung ist technisch notwendig, um Sie beim erneuten
-              Besuch nicht erneut mit dem Banner zu konfrontieren, und erfordert
-              daher keine separate Einwilligung (§ 25 Abs. 2 TTDSG).
+              . Diese Speicherung ist technisch notwendig und erfordert daher
+              keine separate Einwilligung (§ 25 Abs. 2 TTDSG).
             </p>
           </div>
 
           {/* 5 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
               5. Google Maps
             </h2>
             <p>
@@ -153,13 +205,12 @@ export default function DatenschutzPage() {
             <p className="mt-3">
               Bei der Nutzung von Google Maps kann Ihre IP-Adresse an Server
               von Google in den USA übermittelt werden. Wir haben keinen Einfluss
-              auf diese Datenübertragung. Die Nutzung von Google Maps erfolgt im
-              Interesse einer ansprechenden Darstellung unserer Unternehmensstandorte
-              (Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse).
+              auf diese Datenübertragung. Die Nutzung erfolgt im Interesse einer
+              ansprechenden Darstellung unserer Unternehmensstandorte
+              (Art. 6 Abs. 1 lit. f DSGVO).
             </p>
             <p className="mt-3">
-              Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der
-              Datenschutzerklärung von Google:{" "}
+              Weitere Informationen:{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
@@ -174,47 +225,96 @@ export default function DatenschutzPage() {
 
           {/* 6 */}
           <div>
-            <h2 className="text-lg font-bold mb-3" style={{ color: "#1a1a1a" }}>
-              6. Ihre Rechte nach DSGVO
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
+              6. Auftragsverarbeiter
             </h2>
             <p>
-              Sie haben gegenüber uns folgende Rechte hinsichtlich der Sie
-              betreffenden personenbezogenen Daten:
+              Wir setzen folgende Auftragsverarbeiter gemäß Art. 28 DSGVO ein,
+              mit denen Auftragsverarbeitungsverträge (AVV) geschlossen wurden:
+            </p>
+            <div className="mt-4 space-y-4">
+              <div
+                className="p-4 rounded-lg"
+                style={{ border: "1px solid #e5e5e5", backgroundColor: "#fafafa" }}
+              >
+                <p className="font-semibold" style={{ color: "#1a1a1a" }}>
+                  Vercel Inc.
+                </p>
+                <p className="mt-1">
+                  440 N Barranca Ave #4133, Covina, CA 91723, USA
+                  <br />
+                  Zweck: Website-Hosting und Bereitstellung der Infrastruktur
+                  <br />
+                  Datenschutz:{" "}
+                  <a
+                    href="https://vercel.com/legal/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#255aa0" }}
+                  >
+                    vercel.com/legal/privacy-policy
+                  </a>
+                </p>
+              </div>
+              <div
+                className="p-4 rounded-lg"
+                style={{ border: "1px solid #e5e5e5", backgroundColor: "#fafafa" }}
+              >
+                <p className="font-semibold" style={{ color: "#1a1a1a" }}>
+                  Resend Inc.
+                </p>
+                <p className="mt-1">
+                  2261 Market Street #5039, San Francisco, CA 94114, USA
+                  <br />
+                  Zweck: Transaktionaler E-Mail-Versand (Kontakt- und
+                  Bewerbungsformulare)
+                  <br />
+                  Datenschutz:{" "}
+                  <a
+                    href="https://resend.com/legal/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#255aa0" }}
+                  >
+                    resend.com/legal/privacy-policy
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 7 */}
+          <div>
+            <h2 className={h2} style={{ color: "#1a1a1a" }}>
+              7. Ihre Rechte nach DSGVO
+            </h2>
+            <p>
+              Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer
+              personenbezogenen Daten:
             </p>
             <ul className="list-disc list-inside mt-3 space-y-2">
               <li>
-                <strong>Auskunftsrecht</strong> (Art. 15 DSGVO): Sie können
-                Auskunft über die von uns verarbeiteten Daten verlangen.
+                <strong>Auskunftsrecht</strong> (Art. 15 DSGVO)
               </li>
               <li>
-                <strong>Berichtigungsrecht</strong> (Art. 16 DSGVO): Sie können
-                die Berichtigung unrichtiger Daten verlangen.
+                <strong>Berichtigungsrecht</strong> (Art. 16 DSGVO)
               </li>
               <li>
-                <strong>Löschungsrecht</strong> (Art. 17 DSGVO): Sie können die
-                Löschung Ihrer Daten verlangen, soweit keine Aufbewahrungspflichten
-                entgegenstehen.
+                <strong>Löschungsrecht</strong> (Art. 17 DSGVO)
               </li>
               <li>
-                <strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO):
-                Sie können die Einschränkung der Verarbeitung Ihrer Daten verlangen.
+                <strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)
               </li>
               <li>
-                <strong>Datenportabilität</strong> (Art. 20 DSGVO): Sie haben das
-                Recht, Ihre Daten in einem strukturierten, gängigen Format zu
-                erhalten.
+                <strong>Datenportabilität</strong> (Art. 20 DSGVO)
               </li>
               <li>
-                <strong>Widerspruchsrecht</strong> (Art. 21 DSGVO): Sie können
-                der Verarbeitung Ihrer Daten auf Basis von berechtigten Interessen
-                widersprechen.
+                <strong>Widerspruchsrecht</strong> (Art. 21 DSGVO)
               </li>
               <li>
-                <strong>Beschwerderecht</strong> (Art. 77 DSGVO): Sie haben das
-                Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.
-                Zuständig ist der{" "}
+                <strong>Beschwerderecht</strong> (Art. 77 DSGVO) beim{" "}
                 <strong>
-                  Thüringer Landesbeauftragte für den Datenschutz und die
+                  Thüringer Landesbeauftragten für den Datenschutz und die
                   Informationsfreiheit (TLfDI)
                 </strong>
                 , Häßlerstraße 8, 99096 Erfurt,{" "}
@@ -224,7 +324,6 @@ export default function DatenschutzPage() {
                 >
                   poststelle@datenschutz.thueringen.de
                 </a>
-                .
               </li>
             </ul>
             <p className="mt-4">
