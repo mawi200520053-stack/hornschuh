@@ -39,13 +39,20 @@ export default async function ReferenzDetailPage({
 
   return (
     <>
-      {/* Back + Hero */}
-      <section className="pt-24 pb-0" style={{ backgroundColor: "#1a1a1a" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      {/* HERO — full-bleed image with overlaid title */}
+      <section
+        className="relative"
+        style={{ height: "80vh", minHeight: "520px" }}
+      >
+        {/* Slideshow fills the hero */}
+        <ImageSlideshow images={projekt.images} title={projekt.title} heroMode />
+
+        {/* Back link — top left */}
+        <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <Link
             href="/referenzen"
-            className="inline-flex items-center gap-2 text-sm font-medium transition-colors duration-200 mb-8"
-            style={{ color: "#888888" }}
+            className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-70"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -62,22 +69,30 @@ export default async function ReferenzDetailPage({
             </svg>
             Alle Referenzen
           </Link>
-          <span
-            className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4"
-            style={{ backgroundColor: "rgba(37,90,160,0.25)", color: "#255aa0" }}
-          >
-            {projekt.kategorie}
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight max-w-3xl">
-            {projekt.title}
-          </h1>
         </div>
-      </section>
 
-      {/* Slideshow */}
-      <section style={{ backgroundColor: "#111111" }}>
-        <div className="max-w-7xl mx-auto">
-          <ImageSlideshow images={projekt.images} title={projekt.title} />
+        {/* Gradient overlay — fades image to dark at bottom */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 45%, transparent 70%)",
+          }}
+        />
+
+        {/* Badge + title — bottom left */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pb-10 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <span
+              className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4"
+              style={{ backgroundColor: "rgba(37,90,160,0.85)", color: "#ffffff" }}
+            >
+              {projekt.kategorie}
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight max-w-3xl">
+              {projekt.title}
+            </h1>
+          </div>
         </div>
       </section>
 
@@ -106,21 +121,10 @@ export default async function ReferenzDetailPage({
               {prev ? (
                 <Link
                   href={`/referenzen/${prev.id}`}
-                  className="group flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs"
+                  className="flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs"
                   style={{ color: "#555555" }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="flex-shrink-0"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
                   <span className="leading-snug">{prev.title}</span>
@@ -131,22 +135,11 @@ export default async function ReferenzDetailPage({
               {next ? (
                 <Link
                   href={`/referenzen/${next.id}`}
-                  className="group flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs text-right"
+                  className="flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs text-right"
                   style={{ color: "#555555" }}
                 >
                   <span className="leading-snug">{next.title}</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="flex-shrink-0"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M9 18l6-6-6-6" />
                   </svg>
                 </Link>

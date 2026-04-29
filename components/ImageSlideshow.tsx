@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 interface Props {
   images: string[];
   title: string;
+  /** When true, fills the parent container instead of using a 16/9 aspect ratio box */
+  heroMode?: boolean;
 }
 
 const variants = {
@@ -21,7 +23,7 @@ const variants = {
   }),
 };
 
-export default function ImageSlideshow({ images, title }: Props) {
+export default function ImageSlideshow({ images, title, heroMode = false }: Props) {
   const [[index, direction], setSlide] = useState([0, 0]);
 
   function go(next: number) {
@@ -32,8 +34,14 @@ export default function ImageSlideshow({ images, title }: Props) {
 
   const single = images.length <= 1;
 
+  const wrapperClass = heroMode
+    ? "absolute inset-0 overflow-hidden"
+    : "relative w-full overflow-hidden";
+
+  const wrapperStyle = heroMode ? {} : { aspectRatio: "16/9" };
+
   return (
-    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/9" }}>
+    <div className={wrapperClass} style={wrapperStyle}>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={index}
@@ -63,24 +71,10 @@ export default function ImageSlideshow({ images, title }: Props) {
             aria-label="Vorheriges Bild"
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-colors duration-200"
             style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.55)";
-            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.55)"; }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
@@ -89,30 +83,16 @@ export default function ImageSlideshow({ images, title }: Props) {
             aria-label="Nächstes Bild"
             className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-colors duration-200"
             style={{ backgroundColor: "rgba(0,0,0,0.55)" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.55)";
-            }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.8)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "rgba(0,0,0,0.55)"; }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
 
-          {/* Dot indicators */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+          {/* Dot indicators — lifted when heroMode so they don't clash with title overlay */}
+          <div className={`absolute left-1/2 -translate-x-1/2 z-10 flex gap-2 ${heroMode ? "bottom-28" : "bottom-4"}`}>
             {images.map((_, i) => (
               <button
                 key={i}
