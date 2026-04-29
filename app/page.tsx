@@ -313,31 +313,15 @@ export default function HomePage() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Permanent gradient + content */}
                   <div
-                    className="absolute inset-0 flex flex-col justify-end p-5"
+                    className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.18) 55%, transparent 100%)",
+                        "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)",
                     }}
                   >
-                    <span
-                      className="inline-block self-start text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full mb-2"
-                      style={{ backgroundColor: "rgba(37,90,160,0.85)", color: "#ffffff" }}
-                    >
-                      {ref.kategorie}
-                    </span>
-                    <p className="text-white font-bold text-sm leading-snug mb-2">
+                    <p className="text-white text-sm font-semibold leading-snug">
                       {ref.title}
-                    </p>
-                    <p
-                      className="text-xs font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-250"
-                      style={{ color: "#aaaaaa" }}
-                    >
-                      Projekt ansehen
-                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
                     </p>
                   </div>
                 </Link>

@@ -52,42 +52,83 @@ export default function ReferenzenPage() {
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  {/* Permanent gradient + content */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end p-5"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.18) 55%, transparent 100%)",
-                    }}
-                  >
+                  {/* Category badge */}
+                  <div className="absolute top-4 left-4">
                     <span
-                      className="inline-block self-start text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full mb-2"
-                      style={{ backgroundColor: "rgba(37,90,160,0.85)", color: "#ffffff" }}
+                      className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
+                      style={{
+                        backgroundColor: "rgba(37,90,160,0.9)",
+                        color: "#ffffff",
+                        backdropFilter: "blur(4px)",
+                      }}
                     >
                       {projekt.kategorie}
                     </span>
-                    <p className="text-white font-bold text-sm leading-snug mb-2">
-                      {projekt.title}
-                    </p>
-                    <p
-                      className="text-xs font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-250"
-                      style={{ color: "#aaaaaa" }}
-                    >
-                      Projekt ansehen
-                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </p>
                   </div>
-                  {/* Image count — top right */}
+                  {/* Multiple images indicator */}
                   {projekt.images.length > 1 && (
-                    <div
-                      className="absolute top-3 right-3 text-xs font-semibold px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: "rgba(0,0,0,0.55)", color: "#ffffff" }}
-                    >
-                      {projekt.images.length} Fotos
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className="text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1"
+                        style={{
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          color: "#ffffff",
+                          backdropFilter: "blur(4px)",
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <rect x="3" y="3" width="7" height="7" />
+                          <rect x="14" y="3" width="7" height="7" />
+                          <rect x="3" y="14" width="7" height="7" />
+                          <rect x="14" y="14" width="7" height="7" />
+                        </svg>
+                        {projekt.images.length}
+                      </span>
                     </div>
                   )}
+                  {/* Hover overlay */}
+                  <div
+                    className="absolute inset-0 flex items-end p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)",
+                    }}
+                  >
+                    <div>
+                      <p className="text-white font-bold text-base leading-snug mb-1">
+                        {projekt.title}
+                      </p>
+                      <p
+                        className="text-xs font-medium flex items-center gap-1"
+                        style={{ color: "#aaaaaa" }}
+                      >
+                        Projekt ansehen
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
                 </Link>
               </AnimatedSection>
             ))}
