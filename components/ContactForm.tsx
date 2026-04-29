@@ -9,9 +9,25 @@ export default function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
+
+    const form = e.currentTarget;
+    const body = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      company: (form.elements.namedItem("company") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    const res = await fetch("/api/kontakt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
     setLoading(false);
-    setStatus("success");
+    setStatus(res.ok ? "success" : "error");
   }
 
   if (status === "success") {
@@ -32,6 +48,30 @@ export default function ContactForm() {
         <p className="text-sm" style={{ color: "#666666" }}>
           Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze bei Ihnen.
         </p>
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div
+        className="rounded-xl p-8 text-center"
+        style={{ border: "1px solid rgba(200,0,0,0.2)", backgroundColor: "rgba(200,0,0,0.04)" }}
+      >
+        <h3 className="text-lg font-bold mb-2" style={{ color: "#cc0000" }}>
+          Fehler beim Senden
+        </h3>
+        <p className="text-sm mb-4" style={{ color: "#666666" }}>
+          Leider ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an{" "}
+          <a href="mailto:info@hornschuh.eu" style={{ color: "#255aa0" }}>info@hornschuh.eu</a>.
+        </p>
+        <button
+          onClick={() => setStatus("idle")}
+          className="text-sm font-semibold underline"
+          style={{ color: "#255aa0" }}
+        >
+          Erneut versuchen
+        </button>
       </div>
     );
   }

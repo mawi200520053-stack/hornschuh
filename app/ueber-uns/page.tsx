@@ -7,7 +7,8 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Über uns | Hornschuh Metallbau GmbH",
   description:
-    "Seit 1991 im Stahlbau. Erfahren Sie mehr über die Geschichte, Unternehmensstruktur und die Werte der Hornschuh Metallbau GmbH.",
+    "Hornschuh Metallbau GmbH – seit 1991 in Günthersleben-Wechmar, Thüringen. Erfahren Sie mehr über unsere Geschichte, Unternehmensstruktur und Werte.",
+  alternates: { canonical: "https://hornschuh.eu/ueber-uns" },
 };
 
 const stats = [

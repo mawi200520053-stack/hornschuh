@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -7,6 +8,13 @@ import { PROJEKTE_QUERY } from "@/sanity/lib/queries";
 import type { Projekt } from "@/lib/referenzen";
 
 export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
+  description:
+    "Hornschuh Metallbau GmbH – seit 1991 Ihr Spezialist für Stahlbau, Industriehallen und Metallkonstruktionen in Thüringen. Planung, Fertigung und Montage aus einer Hand.",
+  alternates: { canonical: "https://hornschuh.eu" },
+};
 
 const units = [
   {

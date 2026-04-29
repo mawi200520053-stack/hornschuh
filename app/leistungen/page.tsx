@@ -7,7 +7,8 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Leistungen | Hornschuh Metallbau GmbH",
   description:
-    "Planung, Fertigung und Montage von Stahlbaukonstruktionen. Industriehallen, Sonderlösungen, Fassaden, Treppen und mehr.",
+    "Hornschuh Metallbau GmbH – Planung, Fertigung und Montage von Stahlkonstruktionen in Thüringen. Industriehallen, Fassaden, Treppen, Sonderlösungen aus einer Hand.",
+  alternates: { canonical: "https://hornschuh.eu/leistungen" },
 };
 
 const leistungen = [

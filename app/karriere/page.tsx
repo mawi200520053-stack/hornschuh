@@ -13,7 +13,8 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Karriere | Hornschuh Metallbau GmbH",
   description:
-    "Werden Sie Teil des Hornschuh-Teams. Offene Stellen, Ausbildungsplätze und Initiativbewerbungen – wir freuen uns auf Sie.",
+    "Jobs bei Hornschuh Metallbau GmbH in Thüringen – Stahlbauer, Monteure, Schweißer, kaufmännische Stellen. Jetzt bewerben oder Initiativbewerbung einreichen.",
+  alternates: { canonical: "https://hornschuh.eu/karriere" },
 };
 
 

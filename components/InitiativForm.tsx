@@ -29,7 +29,7 @@ function focusBorderOff(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaEleme
 }
 
 export default function InitiativForm() {
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [fileError, setFileError] = useState<string | null>(null);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -51,8 +51,29 @@ export default function InitiativForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setFormStatus("loading");
-    await new Promise((r) => setTimeout(r, 1200));
-    setFormStatus("success");
+
+    const formData = new FormData(e.currentTarget);
+    const res = await fetch("/api/karriere/initiativ", {
+      method: "POST",
+      body: formData,
+    });
+
+    setFormStatus(res.ok ? "success" : "error");
+  }
+
+  if (formStatus === "error") {
+    return (
+      <div className="rounded-xl p-10 text-center" style={{ border: "1px solid rgba(200,0,0,0.2)", backgroundColor: "rgba(200,0,0,0.04)" }}>
+        <h4 className="text-xl font-black mb-2" style={{ color: "#cc0000" }}>Fehler beim Senden</h4>
+        <p className="text-sm mb-4" style={{ color: "#888888" }}>
+          Leider ist etwas schiefgelaufen. Bitte schreiben Sie uns direkt an{" "}
+          <a href="mailto:info@hornschuh.eu" style={{ color: "#255aa0" }}>info@hornschuh.eu</a>.
+        </p>
+        <button onClick={() => setFormStatus("idle")} className="text-sm font-semibold underline" style={{ color: "#255aa0" }}>
+          Erneut versuchen
+        </button>
+      </div>
+    );
   }
 
   if (formStatus === "success") {

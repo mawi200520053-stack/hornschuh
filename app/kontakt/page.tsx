@@ -6,7 +6,8 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Kontakt | Hornschuh Metallbau GmbH",
   description:
-    "Nehmen Sie Kontakt zur Hornschuh Metallbau GmbH auf. Wir beraten Sie kostenlos zu Ihrem Stahlbauprojekt.",
+    "Kontakt zur Hornschuh Metallbau GmbH – Gewerbestraße 3, 99869 Günthersleben-Wechmar. Tel: +49 36256 86 00 90. Kostenlose Beratung für Ihr Stahlbauprojekt.",
+  alternates: { canonical: "https://hornschuh.eu/kontakt" },
 };
 
 const standorte = [

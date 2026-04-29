@@ -11,7 +11,8 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Referenzen | Hornschuh Metallbau GmbH",
   description:
-    "Ausgewählte Referenzprojekte der Hornschuh Metallbau GmbH — Industriehallen, Produktionsgebäude, Sonderkonstruktionen und mehr.",
+    "Referenzprojekte von Hornschuh Metallbau GmbH – Industriehallen, Produktionsgebäude und Sonderkonstruktionen in ganz Deutschland. Stahlbau auf höchstem Niveau.",
+  alternates: { canonical: "https://hornschuh.eu/referenzen" },
 };
 
 export default async function ReferenzenPage() {
