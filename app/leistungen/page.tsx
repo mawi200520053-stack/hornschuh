@@ -250,7 +250,7 @@ export default function LeistungenPage() {
                         style={{ aspectRatio: "21/9" }}
                       >
                         <Image
-                          src="https://hornschuh.eu/wp-content/uploads/2022/03/IMG-20211202-WA0006.jpg"
+                          src="/hornschuh-werkstatt.jpg"
                           alt="Hornschuh Fertigung"
                           fill
                           className="object-cover"

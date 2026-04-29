@@ -92,7 +92,7 @@ export default function UeberUnsPage() {
               style={{ aspectRatio: "4/3" }}
             >
               <Image
-                src="https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp"
+                src="/hornschuh-werk.webp"
                 alt="Hornschuh Werksgebäude"
                 fill
                 className="object-cover"
@@ -177,7 +177,7 @@ export default function UeberUnsPage() {
                 style={{ aspectRatio: "4/3" }}
               >
                 <Image
-                  src="https://hornschuh.eu/wp-content/uploads/2022/03/IMG-20211202-WA0006.jpg"
+                  src="/hornschuh-werkstatt.jpg"
                   alt="Fertigung bei Hornschuh"
                   fill
                   className="object-cover"

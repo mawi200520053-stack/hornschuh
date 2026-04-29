@@ -44,7 +44,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="https://hornschuh.eu/wp-content/uploads/2022/05/Hornschuh-Logo-80.png"
+              src="/hornschuh-logo-80.png"
               alt="Hornschuh Metallbau GmbH"
               width={160}
               height={40}

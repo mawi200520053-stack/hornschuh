@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Logo + Tagline */}
           <div>
             <Image
-              src="https://hornschuh.eu/wp-content/uploads/2022/05/Hornschuh-Logo-80.png"
+              src="/hornschuh-logo-80.png"
               alt="Hornschuh Metallbau GmbH"
               width={150}
               height={38}
@@ -71,7 +71,7 @@ export default function Footer() {
               </div>
               <div>
                 <a
-                  href="tel:+493625686009 0"
+                  href="tel:+4936256860090"
                   className="hover:text-white transition-colors"
                 >
                   +49 36256 86 00 90

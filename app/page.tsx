@@ -51,7 +51,7 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <Image
-          src="https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp"
+          src="/hornschuh-werk.webp"
           alt="Hornschuh Werksgebäude"
           fill
           className="object-cover"
@@ -163,7 +163,7 @@ export default async function HomePage() {
                 style={{ aspectRatio: "4/3" }}
               >
                 <Image
-                  src="https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp"
+                  src="/hornschuh-werk.webp"
                   alt="Hornschuh Werk"
                   fill
                   className="object-cover"

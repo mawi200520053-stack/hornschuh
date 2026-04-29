@@ -26,7 +26,7 @@ const standorte = [
     adresse: "Seebergstraße 20",
     ort: "99869 Günthersleben-Wechmar",
     tel: "+49 36256 86 38 28",
-    telHref: "+493625686382 8",
+    telHref: "+4936256863828",
     email: "info@hornschuh.eu",
   },
 ];

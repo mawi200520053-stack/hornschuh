@@ -35,7 +35,7 @@ export default async function KarrierePage() {
       {/* HERO */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <Image
-          src="https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp"
+          src="/hornschuh-werk.webp"
           alt="Hornschuh Werksgebäude"
           fill
           className="object-cover"

@@ -149,7 +149,7 @@ export default function JobModal({ job, onClose }: JobModalProps) {
           style={{ borderBottom: "1px solid #e5e5e5" }}
         >
           <Image
-            src="https://hornschuh.eu/wp-content/uploads/2022/05/Hornschuh-Logo-Retina-160.png"
+            src="/hornschuh-logo-160.png"
             alt="Hornschuh Logo"
             width={120}
             height={30}
