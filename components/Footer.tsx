@@ -96,7 +96,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid #222222", color: "#555555" }}
         >
           <p>
-            © 2026 Hornschuh Metalltechnik GmbH | Hornschuh GmbH &amp; Co. KG
+            © {new Date().getFullYear()} Hornschuh Metalltechnik GmbH | Hornschuh GmbH &amp; Co. KG
           </p>
           <div className="flex gap-4">
             <Link
