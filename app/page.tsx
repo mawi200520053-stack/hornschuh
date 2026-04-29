@@ -68,16 +68,16 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p
             className="text-xs font-semibold uppercase tracking-widest mb-6"
-            style={{ color: "rgba(255,255,255,0.6)" }}
+            style={{ color: "#255aa0" }}
           >
             Stahl. Bau. Kompetenz.
           </p>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight tracking-tight mb-6">
             Wir bringen
             <br />
-            <span style={{ color: "#ffffff" }}>Stahl in Form.</span>
+            <span style={{ color: "#4a8fd4" }}>Stahl in Form.</span>
           </h1>
-          <p className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
+          <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
             Seit 1991 Ihr zuverlässiger Partner für Stahlbau in Thüringen —
             von der Planung bis zur schlüsselfertigen Übergabe.
           </p>
@@ -126,7 +126,7 @@ export default async function HomePage() {
                   >
                     {stat.value}
                   </p>
-                  <p className="text-sm font-medium" style={{ color: "#aaaaaa" }}>
+                  <p className="text-sm font-medium" style={{ color: "#888888" }}>
                     {stat.label}
                   </p>
                 </div>
@@ -256,8 +256,8 @@ export default async function HomePage() {
                 <div
                   className="p-8 rounded-lg h-full"
                   style={{
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    backgroundColor: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    backgroundColor: "rgba(255,255,255,0.03)",
                   }}
                 >
                   <span
@@ -272,7 +272,7 @@ export default async function HomePage() {
                   </h3>
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "#cccccc" }}
+                    style={{ color: "#888888" }}
                   >
                     {item.desc}
                   </p>
@@ -350,7 +350,7 @@ export default async function HomePage() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight">
               Bereit für Ihr nächstes Projekt?
             </h2>
-            <p className="text-lg mb-10" style={{ color: "#cccccc" }}>
+            <p className="text-lg mb-10" style={{ color: "#888888" }}>
               Sprechen Sie mit uns. Wir beraten Sie kostenfrei und entwickeln
               gemeinsam die beste Lösung für Ihr Vorhaben.
             </p>
