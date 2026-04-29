@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
-import SectionHeading from "@/components/SectionHeading";
+import ReferenzenGalerie, { ReferenzItem } from "@/components/ReferenzenGalerie";
 
 export const metadata: Metadata = {
   title: "Referenzen | Hornschuh Metallbau GmbH",
@@ -10,46 +9,70 @@ export const metadata: Metadata = {
     "Ausgewählte Referenzprojekte der Hornschuh Metallbau GmbH — Industriehallen, Produktionsgebäude, Sonderkonstruktionen und mehr.",
 };
 
-const projekte = [
+const projekte: ReferenzItem[] = [
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Straub-FAV.jpg",
+    id: "lagerhalle-straub",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/04/Straub-FAV.jpg",
     title: "Neubau Lagerhalle mit Verbinder und Carport",
     kategorie: "Lagerhalle",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Izoblok-FAV.jpg",
+    id: "produktionshalle-ohrdruf",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/04/Izoblok-FAV.jpg",
     title: "Neubau Produktionshalle in Ohrdruf",
     kategorie: "Produktionshalle",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Erfit-FAV.jpg",
+    id: "logistik-erfurt",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/04/Erfit-FAV.jpg",
     title: "Neubau Logistik-Halle Erfurt (Deutsche Post)",
     kategorie: "Logistik",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Carl-Zeiss-Jena-FAV.jpg",
+    id: "carl-zeiss-jena",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/04/Carl-Zeiss-Jena-FAV.jpg",
     title: "Neubau Carl Zeiss Jena",
     kategorie: "Industriebau",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Aussichtsturm_FAV.jpg",
+    id: "aussichtsturm-stoentzsch",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/04/Aussichtsturm_FAV.jpg",
     title: "Errichtung Aussichtsturm Stöntzsch",
     kategorie: "Sonderkonstruktion",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/01/Airleben-fav.jpg",
+    id: "airleben-gotha",
+    image: "https://hornschuh.eu/wp-content/uploads/2026/01/Airleben-fav.jpg",
     title: "Neubau Produktions- und Lagerhallen Airleben, Gotha",
     kategorie: "Produktionshalle",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp",
+    id: "firmensitz",
+    image: "https://hornschuh.eu/wp-content/uploads/2022/03/Hornschuh-Werk.webp",
     title: "Firmensitz Günthersleben-Wechmar",
     kategorie: "Industriebau",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
   {
-    src: "https://hornschuh.eu/wp-content/uploads/2022/03/IMG-20211202-WA0006.jpg",
+    id: "fertigung-werk",
+    image: "https://hornschuh.eu/wp-content/uploads/2022/03/IMG-20211202-WA0006.jpg",
     title: "Fertigung im eigenen Werk",
     kategorie: "Fertigung",
+    description:
+      "Projektbeschreibung folgt in Kürze.",
   },
 ];
 
@@ -81,54 +104,7 @@ export default function ReferenzenPage() {
       {/* GALERIE */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projekte.map((projekt, i) => (
-              <AnimatedSection key={projekt.src} delay={i * 0.07}>
-                <div
-                  className="group relative overflow-hidden rounded-xl"
-                  style={{ aspectRatio: "4/3" }}
-                >
-                  <Image
-                    src={projekt.src}
-                    alt={projekt.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Permanent label */}
-                  <div
-                    className="absolute top-4 left-4"
-                  >
-                    <span
-                      className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
-                      style={{
-                        backgroundColor: "rgba(37,90,160,0.9)",
-                        color: "#ffffff",
-                        backdropFilter: "blur(4px)",
-                      }}
-                    >
-                      {projekt.kategorie}
-                    </span>
-                  </div>
-                  {/* Hover overlay */}
-                  <div
-                    className="absolute inset-0 flex items-end p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)",
-                    }}
-                  >
-                    <div>
-                      <p
-                        className="text-white font-bold text-base leading-snug"
-                      >
-                        {projekt.title}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <ReferenzenGalerie items={projekte} />
         </div>
       </section>
 
