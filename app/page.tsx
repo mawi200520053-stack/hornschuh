@@ -308,8 +308,8 @@ export default function HomePage() {
                   style={{ aspectRatio: "4/3" }}
                 >
                   <Image
-                    src={ref.images[0]}
-                    alt={ref.title}
+                    src={ref.titelBild}
+                    alt={ref.titel}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -321,7 +321,7 @@ export default function HomePage() {
                     }}
                   >
                     <p className="text-white text-sm font-semibold leading-snug">
-                      {ref.title}
+                      {ref.titel}
                     </p>
                   </div>
                 </Link>

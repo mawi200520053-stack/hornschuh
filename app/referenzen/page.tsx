@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import ReferenzenGrid from "@/components/ReferenzenGrid";
 import { projekte } from "@/lib/referenzen";
 
 export const metadata: Metadata = {
@@ -25,114 +25,17 @@ export default function ReferenzenPage() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-6 max-w-3xl">
             Referenzen, die für sich sprechen
           </h1>
-          <p
-            className="text-lg leading-relaxed max-w-2xl"
-            style={{ color: "#888888" }}
-          >
+          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "#888888" }}>
             Über drei Jahrzehnte Stahlbau-Erfahrung. Jedes Projekt ein Beweis
             unserer Kompetenz — von der Lagerhalle bis zur Sonderkonstruktion.
           </p>
         </div>
       </section>
 
-      {/* GALERIE */}
+      {/* GALERIE + FILTER */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projekte.map((projekt, i) => (
-              <AnimatedSection key={projekt.id} delay={i * 0.07}>
-                <Link
-                  href={`/referenzen/${projekt.id}`}
-                  className="group relative overflow-hidden rounded-xl block"
-                  style={{ aspectRatio: "4/3" }}
-                >
-                  <Image
-                    src={projekt.images[0]}
-                    alt={projekt.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Category badge */}
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
-                      style={{
-                        backgroundColor: "rgba(37,90,160,0.9)",
-                        color: "#ffffff",
-                        backdropFilter: "blur(4px)",
-                      }}
-                    >
-                      {projekt.kategorie}
-                    </span>
-                  </div>
-                  {/* Multiple images indicator */}
-                  {projekt.images.length > 1 && (
-                    <div className="absolute top-4 right-4">
-                      <span
-                        className="text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1"
-                        style={{
-                          backgroundColor: "rgba(0,0,0,0.6)",
-                          color: "#ffffff",
-                          backdropFilter: "blur(4px)",
-                        }}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="11"
-                          height="11"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <rect x="3" y="3" width="7" height="7" />
-                          <rect x="14" y="3" width="7" height="7" />
-                          <rect x="3" y="14" width="7" height="7" />
-                          <rect x="14" y="14" width="7" height="7" />
-                        </svg>
-                        {projekt.images.length}
-                      </span>
-                    </div>
-                  )}
-                  {/* Hover overlay */}
-                  <div
-                    className="absolute inset-0 flex items-end p-6 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)",
-                    }}
-                  >
-                    <div>
-                      <p className="text-white font-bold text-base leading-snug mb-1">
-                        {projekt.title}
-                      </p>
-                      <p
-                        className="text-xs font-medium flex items-center gap-1"
-                        style={{ color: "#aaaaaa" }}
-                      >
-                        Projekt ansehen
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="11"
-                          height="11"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </AnimatedSection>
-            ))}
-          </div>
+          <ReferenzenGrid items={projekte} />
         </div>
       </section>
 
@@ -148,10 +51,7 @@ export default function ReferenzenPage() {
                 { value: "5.000 m²", label: "Produktionsfläche" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p
-                    className="text-3xl sm:text-4xl font-black mb-1"
-                    style={{ color: "#255aa0" }}
-                  >
+                  <p className="text-3xl sm:text-4xl font-black mb-1" style={{ color: "#255aa0" }}>
                     {stat.value}
                   </p>
                   <p className="text-sm" style={{ color: "#888888" }}>

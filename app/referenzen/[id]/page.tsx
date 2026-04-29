@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projekte } from "@/lib/referenzen";
-import ImageSlideshow from "@/components/ImageSlideshow";
+import GalleryLightbox from "@/components/GalleryLightbox";
 import AnimatedSection from "@/components/AnimatedSection";
 
 export const dynamicParams = false;
@@ -19,8 +20,8 @@ export async function generateMetadata({
   const { id } = await params;
   const projekt = projekte.find((p) => p.id === id);
   return {
-    title: `${projekt?.title ?? "Referenz"} | Hornschuh Metallbau GmbH`,
-    description: `Referenzprojekt der Hornschuh Metallbau GmbH: ${projekt?.title ?? ""}`,
+    title: `${projekt?.titel ?? "Referenz"} | Hornschuh Metallbau GmbH`,
+    description: `${projekt?.leistungsumfang ?? ""} — Auftraggeber: ${projekt?.auftraggeber ?? ""}`,
   };
 }
 
@@ -39,81 +40,123 @@ export default async function ReferenzDetailPage({
 
   return (
     <>
-      {/* HERO — full-bleed image with overlaid title */}
-      <section
-        className="relative"
-        style={{ height: "80vh", minHeight: "520px" }}
-      >
-        {/* Slideshow fills the hero */}
-        <ImageSlideshow images={projekt.images} title={projekt.title} heroMode />
+      {/* HERO — full-bleed titelBild */}
+      <section className="relative" style={{ height: "80vh", minHeight: "520px" }}>
+        <Image
+          src={projekt.titelBild}
+          alt={projekt.titel}
+          fill
+          className="object-cover"
+          priority
+        />
 
-        {/* Back link — top left */}
-        <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-          <Link
-            href="/referenzen"
-            className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-70"
-            style={{ color: "rgba(255,255,255,0.75)" }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        {/* Back link */}
+        <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <Link
+              href="/referenzen"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-opacity duration-200 hover:opacity-70"
+              style={{ color: "rgba(255,255,255,0.8)" }}
             >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-            Alle Referenzen
-          </Link>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+              Alle Referenzen
+            </Link>
+          </div>
         </div>
 
-        {/* Gradient overlay — fades image to dark at bottom */}
+        {/* Gradient */}
         <div
           className="absolute inset-0 z-10 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 45%, transparent 70%)",
+            background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 45%, transparent 70%)",
           }}
         />
 
-        {/* Badge + title — bottom left */}
+        {/* Badge + title */}
         <div className="absolute bottom-0 left-0 right-0 z-20 pb-10 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <span
               className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4"
               style={{ backgroundColor: "rgba(37,90,160,0.85)", color: "#ffffff" }}
             >
-              {projekt.kategorie}
+              {projekt.kategorien.join(" · ")}
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight max-w-3xl">
-              {projekt.title}
+              {projekt.titel}
             </h1>
           </div>
         </div>
       </section>
 
-      {/* Description */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* PROJEKTINFOS */}
+      <section className="py-12 bg-white border-b" style={{ borderColor: "#f0f0f0" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#888888" }}>
+                Jahr
+              </p>
+              <p className="text-base font-semibold" style={{ color: "#1a1a1a" }}>
+                {projekt.jahr}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#888888" }}>
+                Auftraggeber
+              </p>
+              <p className="text-base font-semibold" style={{ color: "#1a1a1a" }}>
+                {projekt.auftraggeber}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#888888" }}>
+                Leistungsumfang
+              </p>
+              <p className="text-base leading-snug" style={{ color: "#1a1a1a" }}>
+                {projekt.leistungsumfang}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GALERIE */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <h2
-              className="text-xl font-bold mb-5 tracking-tight"
-              style={{ color: "#1a1a1a" }}
-            >
-              Projektbeschreibung
+            <h2 className="text-xl font-bold mb-8 tracking-tight" style={{ color: "#1a1a1a" }}>
+              Bildergalerie
             </h2>
-            <p className="text-base leading-relaxed" style={{ color: "#555555" }}>
-              {projekt.description}
-            </p>
+            <GalleryLightbox images={projekt.galerie} titel={projekt.titel} />
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Prev / Next navigation */}
+      {/* VIDEO */}
+      {projekt.video && (
+        <section className="py-16 lg:py-20 bg-white border-t" style={{ borderColor: "#f0f0f0" }}>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <h2 className="text-xl font-bold mb-8 tracking-tight" style={{ color: "#1a1a1a" }}>
+                Projektvideo
+              </h2>
+              <video
+                src={projekt.video}
+                controls
+                poster={projekt.titelBild}
+                className="w-full rounded-xl"
+                style={{ maxHeight: "480px", backgroundColor: "#000" }}
+              >
+                Ihr Browser unterstützt keine Videowiedergabe.
+              </video>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* PREV / NEXT */}
       {(prev || next) && (
         <section className="py-12 border-t" style={{ borderColor: "#e5e5e5" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,25 +170,21 @@ export default async function ReferenzDetailPage({
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
-                  <span className="leading-snug">{prev.title}</span>
+                  <span className="leading-snug">{prev.titel}</span>
                 </Link>
-              ) : (
-                <div />
-              )}
+              ) : <div />}
               {next ? (
                 <Link
                   href={`/referenzen/${next.id}`}
                   className="flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs text-right"
                   style={{ color: "#555555" }}
                 >
-                  <span className="leading-snug">{next.title}</span>
+                  <span className="leading-snug">{next.titel}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M9 18l6-6-6-6" />
                   </svg>
                 </Link>
-              ) : (
-                <div />
-              )}
+              ) : <div />}
             </div>
           </div>
         </section>
