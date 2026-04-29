@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "hornschuh.eu",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
     ],
   },
 };

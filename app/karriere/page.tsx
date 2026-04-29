@@ -5,6 +5,10 @@ import SectionHeading from "@/components/SectionHeading";
 import KarriereStellenListe from "@/components/KarriereStellenListe";
 import InitiativForm from "@/components/InitiativForm";
 import type { Stelle } from "@/components/JobModal";
+import { client } from "@/sanity/lib/client";
+import { STELLEN_QUERY } from "@/sanity/lib/queries";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Karriere | Hornschuh Metallbau GmbH",
@@ -12,60 +16,6 @@ export const metadata: Metadata = {
     "Werden Sie Teil des Hornschuh-Teams. Offene Stellen, Ausbildungsplätze und Initiativbewerbungen – wir freuen uns auf Sie.",
 };
 
-const stellen: Stelle[] = [
-  {
-    id: "kalkulator",
-    titel: "Kalkulator (m/w/d)",
-    datum: "6. Oktober 2025",
-    kurztext:
-      "Für unsere anspruchsvollen Stahlbauprojekte suchen wir zum nächstmöglichen Zeitpunkt einen motivierten Kalkulator.",
-    einleitung:
-      "Für unsere anspruchsvollen und abwechslungsreichen Stahlbauprojekte suchen wir zum nächstmöglichen Zeitpunkt einen motivierten Kalkulator (m/w/d).",
-    aufgaben: [
-      "Erstellung von Kalkulationen für Stahlbauprojekte",
-      "Ausarbeitung von Angeboten",
-      "Abstimmung der Angebotskalkulation mit internen Fachbereichen und externen Partnern nach Auftragseingang",
-      "Begleitung von Bietergesprächen sowie Unterstützung bei Auftragsverhandlungen",
-    ],
-    profil: [
-      "Abgeschlossenes Studium als Bauingenieur (m/w/d) oder Ausbildung als Bautechniker (m/w/d) – gerne auch motivierte Berufseinsteiger",
-      "Alternativ: technische Ausbildung mit entsprechender Praxiserfahrung im Stahlbau",
-      "Eigeninitiative, Verantwortungsbewusstsein sowie Team- und Kommunikationsfähigkeit",
-    ],
-    bieten: [
-      "Umfassende und strukturierte Einarbeitung",
-      "Eine unbefristete Festanstellung",
-      "Anspruchsvolle und abwechslungsreiche Projekte im Stahlbau",
-      "Flexible Arbeitszeiten mit Option auf Home-Office",
-      "Eine attraktive Vergütung",
-    ],
-  },
-  {
-    id: "monteur",
-    titel: "Stahlbaumonteur (m/w/d)",
-    datum: "23. August 2025",
-    kurztext:
-      "Zur Verstärkung unseres Teams suchen wir ab sofort engagierte Stahlbaumonteure für spannende und abwechslungsreiche Projekte.",
-    einleitung:
-      "Zur Verstärkung unseres Teams suchen wir ab sofort engagierte Stahlbaumonteure (m/w/d) für spannende und abwechslungsreiche Projekte.",
-    aufgaben: [
-      "Montage von Stahlhallen inklusive Dach- und Wandkonstruktionen",
-      "Aufbau und Montage von Stahlkonstruktionen",
-    ],
-    profil: [
-      "Abgeschlossene Berufsausbildung im handwerklichen Bereich, idealerweise als Metallbauer, Konstruktionsmechaniker oder Dachdecker",
-      "Höhentauglichkeit",
-      "Zuverlässigkeit, Teamfähigkeit und Einsatzbereitschaft",
-    ],
-    bieten: [
-      "Eine strukturierte und praxisnahe Einarbeitung",
-      "Anspruchsvolle und abwechslungsreiche Stahlbauprojekte",
-      "Ein gutes, familiäres Betriebsklima mit kurzen Entscheidungswegen",
-      "Eine sichere Festanstellung",
-      "Eine attraktive Vergütung",
-    ],
-  },
-];
 
 const vorteile = [
   "Spannende Großprojekte",
@@ -76,7 +26,9 @@ const vorteile = [
   "Attraktive Vergütung",
 ];
 
-export default function KarrierePage() {
+export default async function KarrierePage() {
+  const stellen: Stelle[] = await client.fetch(STELLEN_QUERY).catch(() => []);
+
   return (
     <>
       {/* HERO */}

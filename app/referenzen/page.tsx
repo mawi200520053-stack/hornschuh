@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import ReferenzenGrid from "@/components/ReferenzenGrid";
-import { projekte } from "@/lib/referenzen";
+import { client } from "@/sanity/lib/client";
+import { PROJEKTE_QUERY } from "@/sanity/lib/queries";
+import type { Projekt } from "@/lib/referenzen";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Referenzen | Hornschuh Metallbau GmbH",
@@ -10,7 +14,9 @@ export const metadata: Metadata = {
     "Ausgewählte Referenzprojekte der Hornschuh Metallbau GmbH — Industriehallen, Produktionsgebäude, Sonderkonstruktionen und mehr.",
 };
 
-export default function ReferenzenPage() {
+export default async function ReferenzenPage() {
+  const projekte: Projekt[] = await client.fetch(PROJEKTE_QUERY).catch(() => []);
+
   return (
     <>
       {/* PAGE HERO */}

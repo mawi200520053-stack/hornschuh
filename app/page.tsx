@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
-import { projekte } from "@/lib/referenzen";
+import { client } from "@/sanity/lib/client";
+import { PROJEKTE_QUERY } from "@/sanity/lib/queries";
+import type { Projekt } from "@/lib/referenzen";
+
+export const revalidate = 3600;
 
 const units = [
   {
@@ -25,8 +29,6 @@ const units = [
   },
 ];
 
-const referenzen = projekte.slice(0, 6);
-
 const stats = [
   { value: "35+", label: "Fachkräfte" },
   { value: "5.000 m²", label: "Produktionsfläche" },
@@ -34,7 +36,8 @@ const stats = [
   { value: "3", label: "Unternehmenseinheiten" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const referenzen: Projekt[] = (await client.fetch(PROJEKTE_QUERY).catch(() => [])).slice(0, 6);
   return (
     <>
       {/* HERO */}

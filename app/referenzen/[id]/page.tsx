@@ -2,14 +2,22 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projekte } from "@/lib/referenzen";
+import { client } from "@/sanity/lib/client";
+import { PROJEKTE_IDS_QUERY, PROJEKT_BY_ID_QUERY } from "@/sanity/lib/queries";
+import type { ProjektDetail } from "@/lib/referenzen";
 import GalleryLightbox from "@/components/GalleryLightbox";
 import AnimatedSection from "@/components/AnimatedSection";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 3600;
 
-export function generateStaticParams() {
-  return projekte.map((p) => ({ id: p.id }));
+export async function generateStaticParams() {
+  try {
+    const ids: { id: string }[] = await client.fetch(PROJEKTE_IDS_QUERY);
+    return ids.map(({ id }) => ({ id }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
@@ -18,7 +26,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const projekt = projekte.find((p) => p.id === id);
+  const projekt: ProjektDetail | null = await client.fetch(PROJEKT_BY_ID_QUERY, { id }).catch(() => null);
   return {
     title: `${projekt?.titel ?? "Referenz"} | Hornschuh Metallbau GmbH`,
     description: `${projekt?.leistungsumfang ?? ""} — Auftraggeber: ${projekt?.auftraggeber ?? ""}`,
@@ -31,12 +39,11 @@ export default async function ReferenzDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const projekt = projekte.find((p) => p.id === id);
+  const projekt: ProjektDetail | null = await client.fetch(PROJEKT_BY_ID_QUERY, { id }).catch(() => null);
   if (!projekt) notFound();
 
-  const currentIndex = projekte.findIndex((p) => p.id === id);
-  const prev = projekte[currentIndex - 1] ?? null;
-  const next = projekte[currentIndex + 1] ?? null;
+  const prev = projekt.prevId ? { id: projekt.prevId } : null;
+  const next = projekt.nextId ? { id: projekt.nextId } : null;
 
   return (
     <>
@@ -170,7 +177,7 @@ export default async function ReferenzDetailPage({
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
-                  <span className="leading-snug">{prev.titel}</span>
+                  <span className="leading-snug">Vorheriges Projekt</span>
                 </Link>
               ) : <div />}
               {next ? (
@@ -179,7 +186,7 @@ export default async function ReferenzDetailPage({
                   className="flex items-center gap-3 text-sm font-medium transition-colors duration-200 max-w-xs text-right"
                   style={{ color: "#555555" }}
                 >
-                  <span className="leading-snug">{next.titel}</span>
+                  <span className="leading-snug">Nächstes Projekt</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <path d="M9 18l6-6-6-6" />
                   </svg>
