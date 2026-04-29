@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description:
     "Seit 1991 Ihr Partner für Stahlbau in Thüringen. Industriehallen, Sonderkonstruktionen, Fassaden, Treppen und Geländer – schlüsselfertig aus einer Hand.",
   keywords: "Stahlbau, Industriehallen, Metallbau, Thüringen, Hornschuh",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
