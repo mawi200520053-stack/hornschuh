@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
+import { projekte } from "@/lib/referenzen";
 
 const units = [
   {
@@ -24,32 +25,7 @@ const units = [
   },
 ];
 
-const referenzen = [
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Straub-FAV.jpg",
-    title: "Neubau Lagerhalle mit Verbinder und Carport",
-  },
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Izoblok-FAV.jpg",
-    title: "Neubau Produktionshalle in Ohrdruf",
-  },
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Erfit-FAV.jpg",
-    title: "Neubau Logistik-Halle Erfurt (Deutsche Post)",
-  },
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Carl-Zeiss-Jena-FAV.jpg",
-    title: "Neubau Carl Zeiss Jena",
-  },
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/04/Aussichtsturm_FAV.jpg",
-    title: "Errichtung Aussichtsturm Stöntzsch",
-  },
-  {
-    src: "https://hornschuh.eu/wp-content/uploads/2026/01/Airleben-fav.jpg",
-    title: "Neubau Produktions- und Lagerhallen Airleben, Gotha",
-  },
-];
+const referenzen = projekte.slice(0, 6);
 
 const stats = [
   { value: "35+", label: "Fachkräfte" },
@@ -325,13 +301,14 @@ export default function HomePage() {
           </AnimatedSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {referenzen.map((ref, i) => (
-              <AnimatedSection key={ref.src} delay={i * 0.08}>
-                <div
-                  className="group relative overflow-hidden rounded-lg cursor-pointer"
+              <AnimatedSection key={ref.id} delay={i * 0.08}>
+                <Link
+                  href={`/referenzen/${ref.id}`}
+                  className="group relative overflow-hidden rounded-lg block"
                   style={{ aspectRatio: "4/3" }}
                 >
                   <Image
-                    src={ref.src}
+                    src={ref.images[0]}
                     alt={ref.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -347,7 +324,7 @@ export default function HomePage() {
                       {ref.title}
                     </p>
                   </div>
-                </div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>
