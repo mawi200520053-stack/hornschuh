@@ -1,11 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import path from "path";
 
-export const runtime = "edge";
 export const alt = "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OgImage() {
+export default async function OgImage() {
+  const logoData = await readFile(
+    path.join(process.cwd(), "public/hornschuh-logo-160.png")
+  );
+  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -22,7 +28,7 @@ export default function OgImage() {
       >
         {/* Logo */}
         <img
-          src="https://hornschuh.eu/wp-content/uploads/2022/05/Hornschuh-Logo-Retina-160.png"
+          src={logoSrc}
           width={240}
           height={256}
           style={{ objectFit: "contain" }}

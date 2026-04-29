@@ -29,7 +29,10 @@ export async function generateMetadata({
   const projekt: ProjektDetail | null = await client.fetch(PROJEKT_BY_ID_QUERY, { id }).catch(() => null);
   return {
     title: `${projekt?.titel ?? "Referenz"} | Hornschuh Metallbau GmbH`,
-    description: `${projekt?.leistungsumfang ?? ""} — Auftraggeber: ${projekt?.auftraggeber ?? ""}`,
+    description: projekt
+      ? `${projekt.titel} – realisiert von Hornschuh Metallbau GmbH. Leistungsumfang: ${projekt.leistungsumfang}.`
+      : "Referenzprojekt der Hornschuh Metallbau GmbH – Stahlbau in Thüringen.",
+    alternates: { canonical: `https://hornschuh.eu/referenzen/${id}` },
   };
 }
 
