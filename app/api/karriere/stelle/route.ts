@@ -1,6 +1,6 @@
-import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rateLimit";
+import { transporter } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
@@ -32,41 +32,40 @@ export async function POST(req: NextRequest) {
     attachments.push({ filename: datei.name, content: buffer });
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const { error } = await resend.emails.send({
-    from: "Hornschuh Karriere <noreply@hornschuh.eu>",
-    to: "info@hornschuh.eu",
-    replyTo: email,
-    subject: `Bewerbung: ${stelle} – ${vorname} ${nachname}`,
-    attachments,
-    html: `
-      <div style="font-family:Arial,sans-serif;max-width:600px;color:#1a1a1a">
-        <div style="background:#255aa0;padding:24px 32px;border-radius:8px 8px 0 0">
-          <h1 style="color:#fff;margin:0;font-size:20px">Neue Stellenbewerbung</h1>
-          <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:14px">${stelle}</p>
-        </div>
-        <div style="padding:32px;border:1px solid #e5e5e5;border-top:none;border-radius:0 0 8px 8px">
-          <table style="width:100%;border-collapse:collapse">
-            <tr><td style="padding:8px 0;color:#666;width:140px">Name</td><td style="padding:8px 0;font-weight:bold">${vorname} ${nachname}</td></tr>
-            <tr><td style="padding:8px 0;color:#666">Geburtsdatum</td><td style="padding:8px 0">${geburtsdatum}</td></tr>
-            <tr><td style="padding:8px 0;color:#666">E-Mail</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#255aa0">${email}</a></td></tr>
-            ${telefon ? `<tr><td style="padding:8px 0;color:#666">Telefon</td><td style="padding:8px 0">${telefon}</td></tr>` : ""}
-            <tr><td style="padding:8px 0;color:#666">Adresse</td><td style="padding:8px 0">${adresse}, ${plz} ${ort}</td></tr>
-            <tr><td style="padding:8px 0;color:#666">Stelle</td><td style="padding:8px 0">${stelle}</td></tr>
-            <tr><td style="padding:8px 0;color:#666">Anhang</td><td style="padding:8px 0">${datei && datei.size > 0 ? datei.name : "Kein Anhang"}</td></tr>
-          </table>
-          <div style="margin-top:24px;padding:20px;background:#f9f9f9;border-radius:6px;border-left:4px solid #255aa0">
-            <p style="margin:0 0 8px;font-weight:bold;color:#444">Nachricht</p>
-            <p style="margin:0;white-space:pre-wrap;color:#333">${nachricht}</p>
+  try {
+    await transporter.sendMail({
+      from: `"Hornschuh Karriere" <${process.env.SMTP_USER}>`,
+      to: "info@hornschuh.eu",
+      replyTo: email,
+      subject: `Bewerbung: ${stelle} – ${vorname} ${nachname}`,
+      attachments,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;color:#1a1a1a">
+          <div style="background:#255aa0;padding:24px 32px;border-radius:8px 8px 0 0">
+            <h1 style="color:#fff;margin:0;font-size:20px">Neue Stellenbewerbung</h1>
+            <p style="color:rgba(255,255,255,0.8);margin:6px 0 0;font-size:14px">${stelle}</p>
           </div>
-          <p style="margin-top:24px;font-size:12px;color:#aaa">Gesendet über das Bewerbungsformular auf hornschuh.eu</p>
+          <div style="padding:32px;border:1px solid #e5e5e5;border-top:none;border-radius:0 0 8px 8px">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td style="padding:8px 0;color:#666;width:140px">Name</td><td style="padding:8px 0;font-weight:bold">${vorname} ${nachname}</td></tr>
+              <tr><td style="padding:8px 0;color:#666">Geburtsdatum</td><td style="padding:8px 0">${geburtsdatum}</td></tr>
+              <tr><td style="padding:8px 0;color:#666">E-Mail</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#255aa0">${email}</a></td></tr>
+              ${telefon ? `<tr><td style="padding:8px 0;color:#666">Telefon</td><td style="padding:8px 0">${telefon}</td></tr>` : ""}
+              <tr><td style="padding:8px 0;color:#666">Adresse</td><td style="padding:8px 0">${adresse}, ${plz} ${ort}</td></tr>
+              <tr><td style="padding:8px 0;color:#666">Stelle</td><td style="padding:8px 0">${stelle}</td></tr>
+              <tr><td style="padding:8px 0;color:#666">Anhang</td><td style="padding:8px 0">${datei && datei.size > 0 ? datei.name : "Kein Anhang"}</td></tr>
+            </table>
+            <div style="margin-top:24px;padding:20px;background:#f9f9f9;border-radius:6px;border-left:4px solid #255aa0">
+              <p style="margin:0 0 8px;font-weight:bold;color:#444">Nachricht</p>
+              <p style="margin:0;white-space:pre-wrap;color:#333">${nachricht}</p>
+            </div>
+            <p style="margin-top:24px;font-size:12px;color:#aaa">Gesendet über das Bewerbungsformular auf hornschuh.eu</p>
+          </div>
         </div>
-      </div>
-    `,
-  });
-
-  if (error) {
-    console.error("Resend error (stelle):", error);
+      `,
+    });
+  } catch (err) {
+    console.error("SMTP error (stelle):", err);
     return NextResponse.json({ error: "E-Mail konnte nicht gesendet werden" }, { status: 500 });
   }
 
