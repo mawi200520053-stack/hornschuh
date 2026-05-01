@@ -10,9 +10,9 @@ import type { Projekt } from "@/lib/referenzen";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
+  title: "Hornschuh – Stahl. Bau. Kompetenz.",
   description:
-    "Hornschuh Metallbau GmbH – seit 1991 Ihr Spezialist für Stahlbau, Industriehallen und Metallkonstruktionen in Thüringen. Planung, Fertigung und Montage aus einer Hand.",
+    "Hornschuh Metalltechnik GmbH – seit 1991 Ihr Spezialist für Stahlbau, Industriehallen und Metallkonstruktionen in Thüringen. Planung, Fertigung und Montage aus einer Hand.",
   alternates: { canonical: "https://hornschuh.eu" },
 };
 

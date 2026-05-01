@@ -10,9 +10,9 @@ import type { Projekt } from "@/lib/referenzen";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Referenzen | Hornschuh Metallbau GmbH",
+  title: "Referenzen | Hornschuh",
   description:
-    "Referenzprojekte von Hornschuh Metallbau GmbH – Industriehallen, Produktionsgebäude und Sonderkonstruktionen in ganz Deutschland. Stahlbau auf höchstem Niveau.",
+    "Referenzprojekte von Hornschuh Metalltechnik GmbH – Industriehallen, Produktionsgebäude und Sonderkonstruktionen in ganz Deutschland. Stahlbau auf höchstem Niveau.",
   alternates: { canonical: "https://hornschuh.eu/referenzen" },
 };
 

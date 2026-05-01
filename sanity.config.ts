@@ -9,7 +9,7 @@ export default defineConfig({
   projectId,
   dataset,
   apiVersion: "2025-04-29",
-  title: "Hornschuh Metallbau",
+  title: "Hornschuh Metalltechnik",
   schema: { types: schemaTypes },
   plugins: [
     structureTool({

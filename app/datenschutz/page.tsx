@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung | Hornschuh Metallbau GmbH",
+  title: "Datenschutzerklärung | Hornschuh",
   description:
-    "Informationen zum Datenschutz gemäß DSGVO auf der Website der Hornschuh Metallbau GmbH.",
+    "Informationen zum Datenschutz gemäß DSGVO auf der Website der Hornschuh Metalltechnik GmbH.",
   alternates: { canonical: "https://hornschuh.eu/datenschutz" },
 };
 

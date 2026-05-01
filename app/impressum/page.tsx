@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Impressum | Hornschuh Metallbau GmbH",
-  description: "Impressum der Hornschuh Metallbau GmbH gemäß § 5 TMG.",
+  title: "Impressum | Hornschuh Metalltechnik GmbH",
+  description: "Impressum der Hornschuh Metalltechnik GmbH und der Hornschuh GmbH & Co. KG gemäß § 5 TMG.",
 };
 
 export default function ImpressumPage() {
@@ -80,9 +80,9 @@ export default function ImpressumPage() {
               Geschäftsführer
             </h2>
             <p>
-              Joachim Hornschuh
+              Andre Hornschuh
               <br />
-              André Hornschuh
+              Annett Wild
             </p>
           </div>
 
@@ -92,7 +92,7 @@ export default function ImpressumPage() {
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
             </h2>
             <p>
-              André Hornschuh
+              Annett Wild
               <br />
               Gewerbestraße 3<br />
               99869 Drei Gleichen OT Günthersleben-Wechmar

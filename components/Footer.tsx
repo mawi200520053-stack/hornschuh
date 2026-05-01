@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <Image
               src="/hornschuh-logo-80.png"
-              alt="Hornschuh Metallbau GmbH"
+              alt="Hornschuh Metalltechnik GmbH"
               width={150}
               height={38}
               className="h-9 w-auto object-contain mb-4"

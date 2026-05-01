@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "fs/promises";
 import path from "path";
 
-export const alt = "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.";
+export const alt = "Hornschuh – Stahl. Bau. Kompetenz.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

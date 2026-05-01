@@ -45,7 +45,7 @@ export default function Navigation() {
           <Link href="/" className="flex-shrink-0">
             <Image
               src="/hornschuh-logo-80.png"
-              alt="Hornschuh Metallbau GmbH"
+              alt="Hornschuh Metalltechnik GmbH"
               width={160}
               height={40}
               className="h-10 w-auto object-contain"

@@ -6,9 +6,9 @@ import SectionHeading from "@/components/SectionHeading";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "Über uns | Hornschuh Metallbau GmbH",
+  title: "Über uns | Hornschuh",
   description:
-    "Hornschuh Metallbau GmbH – seit 1991 in Günthersleben-Wechmar, Thüringen. Erfahren Sie mehr über unsere Geschichte, Unternehmensstruktur und Werte.",
+    "Hornschuh – seit 1991 in Günthersleben-Wechmar, Thüringen. Erfahren Sie mehr über unsere Geschichte, Unternehmensstruktur und Werte.",
   alternates: { canonical: "https://hornschuh.eu/ueber-uns" },
 };
 

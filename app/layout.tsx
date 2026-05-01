@@ -16,8 +16,8 @@ const BASE_URL = "https://hornschuh.eu";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
-    template: "%s | Hornschuh Metallbau GmbH",
+    default: "Hornschuh – Stahl. Bau. Kompetenz.",
+    template: "%s | Hornschuh",
   },
   description:
     "Seit 1991 Ihr Partner für Stahlbau in Thüringen. Industriehallen, Sonderkonstruktionen, Fassaden, Treppen und Geländer – schlüsselfertig aus einer Hand.",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     "Sonderkonstruktionen Stahl",
     "Hallenbau Thüringen",
   ],
-  authors: [{ name: "Hornschuh Metallbau GmbH" }],
-  creator: "Hornschuh Metallbau GmbH",
-  publisher: "Hornschuh Metallbau GmbH",
+  authors: [{ name: "Hornschuh Metalltechnik GmbH" }],
+  creator: "Hornschuh Metalltechnik GmbH",
+  publisher: "Hornschuh Metalltechnik GmbH",
   robots: {
     index: true,
     follow: true,
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     url: BASE_URL,
-    siteName: "Hornschuh Metallbau GmbH",
-    title: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
+    siteName: "Hornschuh",
+    title: "Hornschuh – Stahl. Bau. Kompetenz.",
     description:
       "Seit 1991 Ihr Partner für Stahlbau in Thüringen. Industriehallen, Sonderkonstruktionen, Fassaden, Treppen und Geländer – schlüsselfertig aus einer Hand.",
     images: [
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
+        alt: "Hornschuh – Stahl. Bau. Kompetenz.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hornschuh Metallbau GmbH – Stahl. Bau. Kompetenz.",
+    title: "Hornschuh – Stahl. Bau. Kompetenz.",
     description:
       "Seit 1991 Ihr Partner für Stahlbau in Thüringen. Industriehallen, Sonderkonstruktionen, Fassaden, Treppen und Geländer – schlüsselfertig aus einer Hand.",
     images: ["/opengraph-image.png"],
@@ -78,7 +78,7 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "Hornschuh Metallbau GmbH",
+      name: "Hornschuh Metalltechnik GmbH",
       alternateName: ["Hornschuh Metalltechnik GmbH", "Hornschuh GmbH & Co. KG"],
       url: BASE_URL,
       logo: {

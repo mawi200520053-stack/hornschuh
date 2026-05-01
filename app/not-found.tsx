@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Seite nicht gefunden | Hornschuh Metallbau GmbH",
+  title: "Seite nicht gefunden | Hornschuh",
 };
 
 const links = [
