@@ -23,7 +23,6 @@ const ACCEPTED_TYPES = [
   "application/pdf",
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "image/jpeg",
 ];
 const MAX_SIZE_MB = 5;
 
@@ -104,7 +103,7 @@ export default function JobModal({ job, onClose }: JobModalProps) {
     const file = e.target.files?.[0];
     if (!file) { setFileError(null); return; }
     if (!ACCEPTED_TYPES.includes(file.type)) {
-      setFileError("Nur PDF, DOC, DOCX oder JPG erlaubt.");
+      setFileError("Nur PDF, DOC oder DOCX erlaubt.");
       e.target.value = "";
       return;
     }
@@ -332,7 +331,7 @@ export default function JobModal({ job, onClose }: JobModalProps) {
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: "#444444" }}>
                     Unterlagen (Lebenslauf, Zeugnisse)
                   </label>
-                  <input type="file" name="datei" accept=".pdf,.doc,.docx,.jpg,.jpeg"
+                  <input type="file" name="datei" accept=".pdf,.doc,.docx"
                     onChange={handleFileChange}
                     className="w-full text-sm"
                     style={{ color: "#444444" }} />
@@ -340,7 +339,7 @@ export default function JobModal({ job, onClose }: JobModalProps) {
                     <p className="mt-1 text-xs" style={{ color: "#cc0000" }}>{fileError}</p>
                   )}
                   <p className="mt-1 text-xs" style={{ color: "#aaaaaa" }}>
-                    PDF, DOC, DOCX oder JPG · max. 5 MB
+                    PDF, DOC oder DOCX · max. 5 MB
                   </p>
                 </div>
 

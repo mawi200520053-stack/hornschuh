@@ -34,7 +34,7 @@ const tochter = [
     fokus: "Vertrieb & Montageservice",
     beschreibung:
       "Unser Vertrieb- und Montagearm steht für professionelle Ausführung auf der Baustelle. Erfahrene Bauleiter koordinieren jeden Schritt — von der präzisen Anlieferung bis zur reibungslosen Montage.",
-    adresse: "Seebergstraße 20, 99869 Günthersleben-Wechmar",
+    adresse: "Seebergstraße 20, 99869 Drei Gleichen OT Günthersleben-Wechmar",
     tel: "+49 36256 86 38 28",
     email: "info@hornschuh.eu",
   },

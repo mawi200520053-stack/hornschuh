@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { transporter } from "@/lib/mailer";
 
+const MAX_FILE_SIZE_MB = 5;
+const ALLOWED_MIME_TYPES = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
+const ALLOWED_EXTENSIONS = [".pdf", ".doc", ".docx"];
+
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
   if (!rateLimit(ip)) {
@@ -20,14 +28,33 @@ export async function POST(req: NextRequest) {
   const ort = formData.get("ort") as string;
   const email = formData.get("email") as string;
   const nachricht = formData.get("nachricht") as string;
-  const datei = formData.get("datei") as File | null;
+  const datei = formData.get("datei");
 
   if (!vorname || !nachname || !email || !nachricht || !stelle) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 });
   }
 
   const attachments: { filename: string; content: Buffer }[] = [];
-  if (datei && datei.size > 0) {
+  if (datei !== null && datei instanceof File && datei.size > 0) {
+    if (datei.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      return NextResponse.json(
+        { error: "Datei zu groß. Maximal 5 MB erlaubt." },
+        { status: 413 }
+      );
+    }
+    if (!ALLOWED_MIME_TYPES.includes(datei.type)) {
+      return NextResponse.json(
+        { error: "Dateityp nicht erlaubt. Bitte PDF oder Word-Dokument hochladen." },
+        { status: 400 }
+      );
+    }
+    const ext = datei.name.slice(datei.name.lastIndexOf(".")).toLowerCase();
+    if (!ALLOWED_EXTENSIONS.includes(ext)) {
+      return NextResponse.json(
+        { error: "Dateityp nicht erlaubt. Bitte PDF oder Word-Dokument hochladen." },
+        { status: 400 }
+      );
+    }
     const buffer = Buffer.from(await datei.arrayBuffer());
     attachments.push({ filename: datei.name, content: buffer });
   }
@@ -53,7 +80,7 @@ export async function POST(req: NextRequest) {
               ${telefon ? `<tr><td style="padding:8px 0;color:#666">Telefon</td><td style="padding:8px 0">${telefon}</td></tr>` : ""}
               <tr><td style="padding:8px 0;color:#666">Adresse</td><td style="padding:8px 0">${adresse}, ${plz} ${ort}</td></tr>
               <tr><td style="padding:8px 0;color:#666">Stelle</td><td style="padding:8px 0">${stelle}</td></tr>
-              <tr><td style="padding:8px 0;color:#666">Anhang</td><td style="padding:8px 0">${datei && datei.size > 0 ? datei.name : "Kein Anhang"}</td></tr>
+              <tr><td style="padding:8px 0;color:#666">Anhang</td><td style="padding:8px 0">${attachments[0]?.filename ?? "Kein Anhang"}</td></tr>
             </table>
             <div style="margin-top:24px;padding:20px;background:#f9f9f9;border-radius:6px;border-left:4px solid #255aa0">
               <p style="margin:0 0 8px;font-weight:bold;color:#444">Nachricht</p>

@@ -56,7 +56,7 @@ export default function DatenschutzPage() {
               <br />
               Seebergstraße 20
               <br />
-              99869 Günthersleben-Wechmar
+              99869 Drei Gleichen OT Günthersleben-Wechmar
               <br />
               Telefon: +49 36256 86 38 28
               <br />
@@ -118,14 +118,16 @@ export default function DatenschutzPage() {
               Rückfragen verwendet.
             </p>
             <p className="mt-3">
-              Zum Versand der Formulardaten nutzen wir den Dienst{" "}
-              <strong>Resend</strong> (Resend Inc., 2261 Market Street #5039,
-              San Francisco, CA 94114, USA) als technischen E-Mail-Dienstleister.
-              Ihre Daten werden dabei über die Server von Resend an uns
-              übermittelt und anschließend nicht weiter gespeichert. Resend
-              verarbeitet diese Daten als Auftragsverarbeiter gemäß Art. 28 DSGVO.
-              Die Datenübertragung in die USA erfolgt auf Basis der
-              Standardvertragsklauseln der EU-Kommission.
+              Zum Versand der Formulardaten setzen wir die Open-Source-Bibliothek{" "}
+              <strong>Nodemailer</strong> ein, die auf unserem Anwendungsserver
+              (Vercel, siehe 3.1) betrieben wird. Die Weiterleitung der E-Mail
+              erfolgt über den SMTP-Server der{" "}
+              <strong>Host Europe GmbH</strong> (Hansestraße 111, 51149 Köln).
+              Die übermittelten Daten werden ausschließlich innerhalb des
+              Anwendungsservers verarbeitet und über den SMTP-Endpoint von
+              Host Europe an das Unternehmenspostfach weitergeleitet, wo sie
+              gespeichert werden. Mit der Host Europe GmbH besteht ein
+              Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.
             </p>
             <p className="mt-3">
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche
@@ -141,13 +143,13 @@ export default function DatenschutzPage() {
               oder eine Initiativbewerbung einreichen, erheben wir folgende Daten:
               Vor- und Nachname, Geburtsdatum, Adresse, E-Mail-Adresse, Telefon
               (optional), Nachricht sowie optional hochgeladene Unterlagen
-              (Lebenslauf, Zeugnisse; PDF, DOC/DOCX oder JPG, max. 5 MB).
+              (Lebenslauf, Zeugnisse; PDF, DOC oder DOCX, max. 5 MB).
             </p>
             <p className="mt-3">
-              Die Übermittlung erfolgt ebenfalls über den Dienst{" "}
-              <strong>Resend</strong> (siehe 3.2). Dateianhänge werden direkt
-              als E-Mail-Anhang an uns weitergeleitet und nicht auf
-              Drittservern gespeichert.
+              Die Übermittlung erfolgt ebenfalls über Nodemailer und den
+              SMTP-Server der Host Europe GmbH (siehe 3.2). Dateianhänge
+              werden direkt als E-Mail-Anhang an uns weitergeleitet und
+              nicht auf Drittservern gespeichert.
             </p>
             <p className="mt-3">
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung
@@ -261,22 +263,23 @@ export default function DatenschutzPage() {
                 style={{ border: "1px solid #e5e5e5", backgroundColor: "#fafafa" }}
               >
                 <p className="font-semibold" style={{ color: "#1a1a1a" }}>
-                  Resend Inc.
+                  Host Europe GmbH
                 </p>
                 <p className="mt-1">
-                  2261 Market Street #5039, San Francisco, CA 94114, USA
+                  Hansestraße 111, 51149 Köln
                   <br />
-                  Zweck: Transaktionaler E-Mail-Versand (Kontakt- und
-                  Bewerbungsformulare)
+                  Zweck: SMTP-Infrastruktur für den E-Mail-Versand über
+                  Kontakt- und Bewerbungsformulare; Speicherung der
+                  empfangenen E-Mails im Kundenpostfach
                   <br />
                   Datenschutz:{" "}
                   <a
-                    href="https://resend.com/legal/privacy-policy"
+                    href="https://www.hosteurope.de/AGB/Datenschutzerklaerung/"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: "#255aa0" }}
                   >
-                    resend.com/legal/privacy-policy
+                    hosteurope.de/AGB/Datenschutzerklaerung
                   </a>
                 </p>
               </div>

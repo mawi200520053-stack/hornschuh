@@ -25,7 +25,7 @@ const standorte = [
     name: "Hornschuh GmbH & Co. KG",
     fokus: "Vertrieb & Montage",
     adresse: "Seebergstraße 20",
-    ort: "99869 Günthersleben-Wechmar",
+    ort: "99869 Drei Gleichen OT Günthersleben-Wechmar",
     tel: "+49 36256 86 38 28",
     telHref: "+4936256863828",
     email: "info@hornschuh.eu",
