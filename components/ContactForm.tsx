@@ -19,6 +19,7 @@ export default function ContactForm() {
       subject: (form.elements.namedItem("subject") as HTMLSelectElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
       fax: (form.elements.namedItem("fax") as HTMLInputElement).value,
+      datenschutz: (form.elements.namedItem("datenschutz") as HTMLInputElement).checked ? "on" : "off",
     };
 
     const res = await fetch("/api/kontakt", {
@@ -238,6 +239,24 @@ export default function ContactForm() {
             ((e.target as HTMLTextAreaElement).style.borderColor = "#e5e5e5")
           }
         />
+      </div>
+
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="datenschutz"
+          name="datenschutz"
+          required
+          className="mt-0.5 flex-shrink-0"
+          style={{ accentColor: "#255aa0" }}
+        />
+        <label htmlFor="datenschutz" className="text-xs leading-relaxed" style={{ color: "#666666" }}>
+          Ich habe die{" "}
+          <a href="/datenschutz" style={{ color: "#255aa0" }}>
+            Datenschutzerklärung
+          </a>{" "}
+          gelesen und stimme der Verarbeitung meiner Daten zu. *
+        </label>
       </div>
 
       <button

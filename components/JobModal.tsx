@@ -51,12 +51,6 @@ export default function JobModal({ job, onClose }: JobModalProps) {
   const firstFocusRef = useRef<HTMLButtonElement>(null);
   const lastFocusRef = useRef<HTMLButtonElement>(null);
 
-  // Reset form state when job changes
-  useEffect(() => {
-    setFormStatus("idle");
-    setFileError(null);
-  }, [job?.id]);
-
   // Lock body scroll, ESC key, focus first element
   useEffect(() => {
     if (!job) return;

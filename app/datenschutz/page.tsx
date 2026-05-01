@@ -178,19 +178,21 @@ export default function DatenschutzPage() {
             </p>
 
             <h3 className={h3} style={{ color: "#1a1a1a" }}>
-              4.2 Speicherung der Cookie-Einwilligung
+              4.2 Bestätigung des Info-Banners
             </h3>
             <p>
-              Um Ihre Entscheidung im Cookie-Banner zu speichern, nutzen wir den
-              lokalen Speicher (localStorage) Ihres Browsers unter dem Schlüssel{" "}
+              Um zu speichern, dass Sie den Hinweis im Cookie-Banner bestätigt
+              haben, nutzen wir den lokalen Speicher (localStorage) Ihres
+              Browsers unter dem Schlüssel{" "}
               <code
                 className="px-1 py-0.5 rounded text-xs"
                 style={{ backgroundColor: "#f5f5f5", color: "#333333" }}
               >
-                hornschuh-cookie-consent
+                hornschuh-cookie-info-dismissed
               </code>
-              . Diese Speicherung ist technisch notwendig und erfordert daher
-              keine separate Einwilligung (§ 25 Abs. 2 TTDSG).
+              . Es handelt sich dabei um eine reine Anzeige-Info (keine
+              Einwilligung), die technisch notwendig ist und daher keiner
+              gesonderten Einwilligung bedarf (§ 25 Abs. 2 TTDSG).
             </p>
           </div>
 

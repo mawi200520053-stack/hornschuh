@@ -62,7 +62,7 @@ export default function KarriereStellenListe({ stellen }: Props) {
         ))}
       </div>
 
-      <JobModal job={activeJob} onClose={() => setActiveJob(null)} />
+      <JobModal key={activeJob?.id ?? "none"} job={activeJob} onClose={() => setActiveJob(null)} />
     </>
   );
 }

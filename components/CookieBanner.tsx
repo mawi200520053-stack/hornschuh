@@ -1,36 +1,37 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
+const STORAGE_KEY = "hornschuh-cookie-info-dismissed";
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot() {
+  return localStorage.getItem(STORAGE_KEY) === "1";
+}
+
+// On the server (and during hydration) treat as dismissed to avoid a flash
+function getServerSnapshot() {
+  return true;
+}
+
 export default function CookieBanner() {
-  const [mounted, setMounted] = useState(false);
-  const [consent, setConsent] = useState<"accepted" | "minimal" | null>(null);
+  const dismissed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
-  useEffect(() => {
-    const stored = localStorage.getItem("hornschuh-cookie-consent");
-    if (stored === "accepted" || stored === "minimal") {
-      setConsent(stored as "accepted" | "minimal");
-    }
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  function accept() {
-    localStorage.setItem("hornschuh-cookie-consent", "accepted");
-    setConsent("accepted");
-  }
-
-  function minimal() {
-    localStorage.setItem("hornschuh-cookie-consent", "minimal");
-    setConsent("minimal");
+  function dismiss() {
+    localStorage.setItem(STORAGE_KEY, "1");
+    // Notify useSyncExternalStore listeners in the same tab
+    window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
   }
 
   return (
     <AnimatePresence>
-      {consent === null && (
+      {!dismissed && (
         <motion.div
           key="cookie-banner"
           initial={{ y: 100, opacity: 0 }}
@@ -43,8 +44,8 @@ export default function CookieBanner() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <p className="text-sm" style={{ color: "#888888" }}>
-                Diese Website verwendet technisch notwendige Cookies sowie localStorage zur Speicherung Ihrer Cookie-Einwilligung.
-                Weitere Informationen finden Sie in unserer{" "}
+                Diese Website verwendet ausschließlich technisch notwendige Cookies.
+                Es findet kein Tracking statt. Mehr Infos in der{" "}
                 <Link
                   href="/datenschutz"
                   className="underline underline-offset-2 transition-colors duration-200"
@@ -54,22 +55,9 @@ export default function CookieBanner() {
                 </Link>
                 .
               </p>
-              <div className="flex gap-3 flex-shrink-0">
+              <div className="flex-shrink-0">
                 <button
-                  onClick={minimal}
-                  className="px-4 py-2 text-sm font-medium rounded transition-colors duration-200 cursor-pointer"
-                  style={{ border: "1px solid #3a3a3a", color: "#888888", backgroundColor: "transparent" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                  }}
-                >
-                  Nur notwendige
-                </button>
-                <button
-                  onClick={accept}
+                  onClick={dismiss}
                   className="px-5 py-2 text-sm font-semibold rounded transition-colors duration-200 cursor-pointer"
                   style={{ backgroundColor: "#255aa0", color: "#ffffff" }}
                   onMouseEnter={(e) => {
@@ -79,7 +67,7 @@ export default function CookieBanner() {
                     e.currentTarget.style.backgroundColor = "#255aa0";
                   }}
                 >
-                  Alle akzeptieren
+                  Verstanden
                 </button>
               </div>
             </div>

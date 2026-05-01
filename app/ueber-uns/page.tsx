@@ -205,7 +205,7 @@ export default function UeberUnsPage() {
                 <p className="text-base leading-relaxed" style={{ color: "#cccccc" }}>
                   „Qualität ist kein Zufall — sie ist das Ergebnis von Sorgfalt,
                   Erfahrung und dem Willen, es richtig zu machen. Das ist der
-                  Anspruch, den wir an uns selbst stellen."
+                  Anspruch, den wir an uns selbst stellen.&rdquo;
                 </p>
               </div>
             </AnimatedSection>

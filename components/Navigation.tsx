@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -19,6 +19,7 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const prevPathname = useRef(pathname);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,7 +28,10 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
+      setIsOpen(false);
+    }
   }, [pathname]);
 
   return (
