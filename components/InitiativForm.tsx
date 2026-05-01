@@ -90,6 +90,7 @@ export default function InitiativForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input type="text" name="fax" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-semibold mb-1.5" style={{ color: "#cccccc" }}>Vorname *</label>

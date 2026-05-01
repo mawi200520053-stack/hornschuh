@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { transporter } from "@/lib/mailer";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 const MAX_FILE_SIZE_MB = 5;
 const ALLOWED_MIME_TYPES = [
   "application/pdf",
@@ -18,6 +20,8 @@ export async function POST(req: NextRequest) {
 
   const formData = await req.formData();
 
+  if (formData.get("fax")) return NextResponse.json({ ok: true });
+
   const vorname = formData.get("vorname") as string;
   const nachname = formData.get("nachname") as string;
   const geburtsdatum = formData.get("geburtsdatum") as string;
@@ -32,6 +36,10 @@ export async function POST(req: NextRequest) {
 
   if (!vorname || !nachname || !email || !nachricht) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 });
+  }
+
+  if (!EMAIL_RE.test(email)) {
+    return NextResponse.json({ error: "Ungültige E-Mail-Adresse" }, { status: 400 });
   }
 
   const attachments: { filename: string; content: Buffer }[] = [];
@@ -92,7 +100,7 @@ export async function POST(req: NextRequest) {
       `,
     });
   } catch (err) {
-    console.error("SMTP error (initiativ):", err);
+    console.error("Initiativbewerbung: E-Mail-Versand fehlgeschlagen", err instanceof Error ? err.message : "Unbekannter Fehler");
     return NextResponse.json({ error: "E-Mail konnte nicht gesendet werden" }, { status: 500 });
   }
 

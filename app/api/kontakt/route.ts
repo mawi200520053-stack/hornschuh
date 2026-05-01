@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rateLimit";
 import { transporter } from "@/lib/mailer";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 const SUBJECT_LABELS: Record<string, string> = {
   planung: "Planung & Beratung",
   fertigung: "Fertigung & Produktion",
@@ -16,10 +18,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Zu viele Anfragen" }, { status: 429 });
   }
 
-  const { name, company, email, phone, subject, message } = await req.json();
+  const { name, company, email, phone, subject, message, fax } = await req.json();
+
+  if (fax) return NextResponse.json({ ok: true });
 
   if (!name || !email || !subject || !message) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 });
+  }
+
+  if (!EMAIL_RE.test(email)) {
+    return NextResponse.json({ error: "Ungültige E-Mail-Adresse" }, { status: 400 });
   }
 
   try {
@@ -50,7 +58,7 @@ export async function POST(req: NextRequest) {
       `,
     });
   } catch (err) {
-    console.error("SMTP error (kontakt):", err);
+    console.error("Kontaktformular: E-Mail-Versand fehlgeschlagen", err instanceof Error ? err.message : "Unbekannter Fehler");
     return NextResponse.json({ error: "E-Mail konnte nicht gesendet werden" }, { status: 500 });
   }
 

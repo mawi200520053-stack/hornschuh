@@ -18,6 +18,7 @@ export default function ContactForm() {
       phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
       subject: (form.elements.namedItem("subject") as HTMLSelectElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      fax: (form.elements.namedItem("fax") as HTMLInputElement).value,
     };
 
     const res = await fetch("/api/kontakt", {
@@ -90,6 +91,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input type="text" name="fax" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
           <label

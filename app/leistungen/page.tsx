@@ -256,6 +256,8 @@ export default function LeistungenPage() {
                           alt="Hornschuh Fertigung"
                           fill
                           className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 75vw, 900px"
+                          quality={85}
                         />
                       </div>
                     )}

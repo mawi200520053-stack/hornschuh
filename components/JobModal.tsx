@@ -266,8 +266,8 @@ export default function JobModal({ job, onClose }: JobModalProps) {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Hidden job title */}
                 <input type="hidden" name="stelle" value={job.titel} />
+                <input type="text" name="fax" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
