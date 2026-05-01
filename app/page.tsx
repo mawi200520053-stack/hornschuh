@@ -167,6 +167,8 @@ export default async function HomePage() {
                   alt="Hornschuh Werk"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={85}
                 />
               </div>
             </AnimatedSection>

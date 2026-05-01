@@ -63,6 +63,8 @@ export default async function ReferenzDetailPage({
           fill
           className="object-cover"
           priority
+          sizes="100vw"
+          quality={85}
         />
 
         {/* Back link */}

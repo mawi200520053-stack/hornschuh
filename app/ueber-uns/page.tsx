@@ -99,6 +99,8 @@ export default function UeberUnsPage() {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={85}
               />
             </div>
           </div>
@@ -183,6 +185,8 @@ export default function UeberUnsPage() {
                   alt="Fertigung bei Hornschuh"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  quality={85}
                 />
               </div>
               <div

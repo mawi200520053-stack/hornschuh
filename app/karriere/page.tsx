@@ -42,7 +42,8 @@ export default async function KarrierePage() {
           fill
           className="object-cover"
           priority
-          quality={90}
+          sizes="100vw"
+          quality={85}
         />
         <div
           className="absolute inset-0"
