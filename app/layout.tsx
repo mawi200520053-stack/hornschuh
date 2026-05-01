@@ -78,7 +78,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
       name: "Hornschuh Metalltechnik GmbH",
-      alternateName: ["Hornschuh Metalltechnik GmbH", "Hornschuh GmbH & Co. KG"],
+      alternateName: ["Hornschuh GmbH & Co. KG", "Hornschuh Bauelemente GmbH"],
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
@@ -121,8 +121,8 @@ const jsonLd = {
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 50.9283,
-        longitude: 10.8712,
+        latitude: 50.8981,
+        longitude: 10.7647,
       },
       openingHoursSpecification: [
         {

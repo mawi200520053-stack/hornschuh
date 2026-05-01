@@ -40,7 +40,7 @@ const units = [
 const stats = [
   { value: "35+", label: "Fachkräfte" },
   { value: "5.000 m²", label: "Produktionsfläche" },
-  { value: "30+", label: "Jahre Erfahrung" },
+  { value: "35+", label: "Jahre Erfahrung" },
   { value: "3", label: "Unternehmenseinheiten" },
 ];
 

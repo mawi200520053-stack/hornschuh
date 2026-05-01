@@ -54,7 +54,7 @@ export default async function ReferenzenPage() {
           <AnimatedSection>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
               {[
-                { value: "30+", label: "Jahre Erfahrung" },
+                { value: "35+", label: "Jahre Erfahrung" },
                 { value: "500+", label: "Projekte realisiert" },
                 { value: "35+", label: "Fachkräfte" },
                 { value: "5.000 m²", label: "Produktionsfläche" },

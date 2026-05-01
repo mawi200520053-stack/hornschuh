@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   const nachricht = formData.get("nachricht") as string;
   const datei = formData.get("datei");
 
-  if (!vorname || !nachname || !email || !nachricht) {
+  if (!vorname || !nachname || !email || !nachricht || !geburtsdatum || !adresse || !plz || !ort) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 });
   }
 
