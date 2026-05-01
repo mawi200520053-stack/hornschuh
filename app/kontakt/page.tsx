@@ -7,7 +7,7 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 export const metadata: Metadata = {
   title: "Kontakt | Hornschuh Metallbau GmbH",
   description:
-    "Kontakt zur Hornschuh Metallbau GmbH – Gewerbestraße 3, 99869 Günthersleben-Wechmar. Tel: +49 36256 86 00 90. Kostenlose Beratung für Ihr Stahlbauprojekt.",
+    "Kontakt zur Hornschuh Metallbau GmbH – Gewerbestraße 3, 99869 Drei Gleichen OT Günthersleben-Wechmar. Tel: +49 36256 86 00 90. Kostenlose Beratung für Ihr Stahlbauprojekt.",
   alternates: { canonical: "https://hornschuh.eu/kontakt" },
 };
 
@@ -16,7 +16,7 @@ const standorte = [
     name: "Hornschuh Metalltechnik GmbH",
     fokus: "Konstruktion & Fertigung",
     adresse: "Gewerbestraße 3",
-    ort: "99869 Günthersleben-Wechmar",
+    ort: "99869 Drei Gleichen OT Günthersleben-Wechmar",
     tel: "+49 36256 86 00 90",
     telHref: "+4936256860090",
     email: "info@hornschuh.eu",

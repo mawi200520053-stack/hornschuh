@@ -25,7 +25,7 @@ const tochter = [
     fokus: "Konstruktion, Entwicklung & Fertigung",
     beschreibung:
       "Das Herzstück des Unternehmens: Auf über 5.000 m² Produktionsfläche entstehen Stahlkonstruktionen höchster Präzision. Mit modernsten Maschinen und erfahrenem Fachpersonal fertigen wir von der Einzelanfertigung bis zur Kleinserie.",
-    adresse: "Gewerbestraße 3, 99869 Günthersleben-Wechmar",
+    adresse: "Gewerbestraße 3, 99869 Drei Gleichen OT Günthersleben-Wechmar",
     tel: "+49 36256 86 00 90",
     email: "info@hornschuh.eu",
   },

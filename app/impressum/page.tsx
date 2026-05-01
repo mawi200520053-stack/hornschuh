@@ -26,7 +26,7 @@ export default function ImpressumPage() {
               Hornschuh Metalltechnik GmbH
               <br />
               Gewerbestraße 3<br />
-              99869 Günthersleben-Wechmar
+              99869 Drei Gleichen OT Günthersleben-Wechmar
             </p>
             <p className="mt-3">
               <strong>Telefon:</strong> +49 36256 86 00 90
@@ -95,7 +95,7 @@ export default function ImpressumPage() {
               André Hornschuh
               <br />
               Gewerbestraße 3<br />
-              99869 Günthersleben-Wechmar
+              99869 Drei Gleichen OT Günthersleben-Wechmar
             </p>
           </div>
 

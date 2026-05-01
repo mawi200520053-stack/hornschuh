@@ -67,7 +67,7 @@ export default function Footer() {
                   Hornschuh Metalltechnik GmbH
                 </p>
                 <p>Gewerbestraße 3</p>
-                <p>99869 Günthersleben-Wechmar</p>
+                <p>99869 Drei Gleichen OT Günthersleben-Wechmar</p>
               </div>
               <div>
                 <a

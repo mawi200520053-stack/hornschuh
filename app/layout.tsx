@@ -90,8 +90,8 @@ const jsonLd = {
       telephone: "+4936256860090",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Gewerbestraße 3",
-        addressLocality: "Günthersleben-Wechmar",
+        streetAddress: "Gewerbestraße 3, OT Günthersleben-Wechmar",
+        addressLocality: "Drei Gleichen",
         postalCode: "99869",
         addressCountry: "DE",
         addressRegion: "Thüringen",
@@ -114,10 +114,11 @@ const jsonLd = {
       priceRange: "€€€",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Gewerbestraße 3",
-        addressLocality: "Günthersleben-Wechmar",
+        streetAddress: "Gewerbestraße 3, OT Günthersleben-Wechmar",
+        addressLocality: "Drei Gleichen",
         postalCode: "99869",
         addressCountry: "DE",
+        addressRegion: "Thüringen",
       },
       geo: {
         "@type": "GeoCoordinates",
